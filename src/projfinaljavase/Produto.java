@@ -15,6 +15,10 @@ public class Produto {
     private String desig;
     private int stock;
     private int prc;
+    private int incStock;
+    private int decStock;
+    
+    
 
     public int getId_Prod() {
         return id_Prod;
@@ -36,10 +40,6 @@ public class Produto {
         return stock;
     }
 
-    public void setStock(int stock) {
-        this.stock = stock;
-    }
-
     public int getPrc() {
         return prc;
     }
@@ -48,7 +48,15 @@ public class Produto {
         this.prc = prc;
     }
     
+    public void incStock(){
+        
+        incStock=++stock;
+
+    }
     
-    
-    
+    public void decStock(){
+        
+        decStock=--stock;
+        
+    }
 }
