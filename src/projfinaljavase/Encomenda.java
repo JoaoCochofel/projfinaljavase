@@ -14,15 +14,14 @@ import java.util.Date;
 public class Encomenda {
     
     private int id_Enc;
-    private int id_Cli;
-    private int id_Prod;
+    private Cliente cli;
+    private Produto prod;
     private Date data;
     private int qtd;
 
-    public Encomenda(int id_Cli, int id_Prod, Date data, int qtd) {
-        
-        this.id_Cli = id_Cli;
-        this.id_Prod = id_Prod;
+    public Encomenda(Cliente cli, Produto prod, Date data, int qtd) {
+        this.cli = cli;
+        this.prod = prod;
         this.data = data;
         this.qtd = qtd;
     }
@@ -35,21 +34,22 @@ public class Encomenda {
         this.id_Enc = id_Enc;
     }
 
-    public int getId_Cli() {
-        return id_Cli;
+    public Cliente getCli() {
+        return cli;
     }
 
-    public void setId_Cli(int id_Cli) {
-        this.id_Cli = id_Cli;
+    public void setCli(Cliente cli) {
+        this.cli = cli;
     }
 
-    public int getId_Prod() {
-        return id_Prod;
+    public Produto getProd() {
+        return prod;
     }
 
-    public void setId_Prod(int id_Prod) {
-        this.id_Prod = id_Prod;
+    public void setProd(Produto prod) {
+        this.prod = prod;
     }
+
 
     public Date getData() {
         return data;
