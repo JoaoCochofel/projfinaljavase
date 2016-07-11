@@ -23,17 +23,19 @@ public class InterfaceBD {
     private static Connection con=null; 
     private static Statement stmt=null;
     private static final String JDBC_DRIVER="org.apache.derby.jdbc.ClientDriver"; 
-    private static final String DB_URL="jdbc:derby://localhost:1527/sample"; 
-    private static final String USER="app";
-    private static final String PASS="app";
+    private static final String DB_URL="jdbc:derby://localhost:1527/GestStock"; 
+    private static final String USER="GestStock";
+    private static final String PASS="GestStock";
     
-    private void getConnection(){
+    private boolean getConnection(){
+        boolean ret = true;
         try {
             //Registar o JDBC driver, não esquecer de adicionar nas Libraries do Proj.
             Class.forName(JDBC_DRIVER);//Deixou de ser necessário após SE6
         } catch (ClassNotFoundException ex) {
             System.out.println("Erro com JDBC_DRIVER");
             Logger.getLogger(InterfaceBD.class.getName()).log(Level.SEVERE, null, ex);
+            ret = false;
             
         }
         try {
@@ -42,11 +44,27 @@ public class InterfaceBD {
         } catch (SQLException ex) {
             System.out.println("Erro a ligar com a base de dados");
             Logger.getLogger(InterfaceBD.class.getName()).log(Level.SEVERE, null, ex);
-            
+            ret = false;
+        }
+        
+        return ret;
+    }
+    
+    private void closeConection(){
+        try {
+            con.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(InterfaceBD.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
-    /*private void closeConection*/
+    private void closeStatement(){
+        try {
+            stmt.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(InterfaceBD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
     /**
      * Este metodo recebe uma string query e retorna o ResultSet do retorno da chamada dessa query à base de dados.
@@ -69,6 +87,24 @@ public class InterfaceBD {
         return rs;
     }
     
+    private boolean insert(String insert){
+        boolean ret = true;
+        try {
+            stmt = (Statement) con.createStatement();
+        } catch (SQLException ex) {
+            Logger.getLogger(InterfaceBD.class.getName()).log(Level.SEVERE, null, ex);
+            ret= false;
+        }
+        try {
+            stmt.executeUpdate(insert);
+        } catch (SQLException ex) {
+            Logger.getLogger(InterfaceBD.class.getName()).log(Level.SEVERE, null, ex);
+            ret = false;
+        }
+
+        return ret;
+    }
+    
     
     public int getNextID(int i){
         String tabela="";
@@ -86,13 +122,38 @@ public class InterfaceBD {
         } catch (SQLException ex) {
             Logger.getLogger(InterfaceBD.class.getName()).log(Level.SEVERE, null, ex);
         }
+        closeStatement();
+        closeConection();
         return nextID;
     }
     
     
-    /*public boolean registaProduto(Produto p){
-        getConnection();
-    }*/
+    public boolean registaProduto(Produto p){
+        boolean ret = true;
+        
+        if(getConnection()){
+            String query = "insert or update into produto (id, desig, stock, prc) values ("+p.getId_Prod()+","+p.getDesig()+","+p.getStock()+","+p.getPrc()+")";
+            if(!insert(query)){
+                ret= false;
+            }
+        }else{
+            ret = false;
+        }
+        return ret;
+    }
+    
+    public boolean registaCliente(Cliente c){
+        boolean ret = true;
+        if(getConnection()){
+            String query = "insert or update into cliente (id, nome, morada, telf, mail) values ("+c.getId_Cli()+","+c.getNome()+","+c.getMorada()+","+c.getTelf()+","+c.getMail()+")";
+            if(!insert(query)){
+                ret= false;
+            }
+        }else{
+            ret = false;
+        }
+        return ret;
+    }
     
     
 }

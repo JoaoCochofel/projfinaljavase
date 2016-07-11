@@ -102,10 +102,15 @@ public class GesStock {
     
     
     public boolean registaProducto(String desig, int stock, float prc){
+        boolean ret = true;
         Produto p = criaObjProd(desig, stock, prc);
-        p.setId_Prod(bd.getNextID(1));
-        produtos.add(p);
-        return true; //meh
+        p.setId_Prod(bd.getNextID(1)+1);
+        if(!bd.registaProduto(p)){
+            ret= false;
+        }else{
+            produtos.add(p);
+        }
+        return ret;
     }
     
     
@@ -114,9 +119,20 @@ public class GesStock {
         return p;
     }
     
-    public boolean registaCliente(){
-        return true;
+    public boolean registaCliente(String nome, String morada, int telf, String mail){
+        boolean ret = true;
+        Cliente c = criaObjClt(nome, morada, telf, mail);
+        c.setId_Cli(bd.getNextID(0)+1);
+        if(!bd.registaCliente(c)){
+            ret= false;
+        }else{
+            clientes.add(c);
+        }
+        return ret;
     }
     
-    
+    private Cliente criaObjClt(String nome, String morada, int telf, String mail){
+        Cliente c = new Cliente(nome, morada, telf, mail);
+        return c;
+    }
 }
