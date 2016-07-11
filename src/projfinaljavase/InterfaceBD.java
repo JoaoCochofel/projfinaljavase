@@ -142,5 +142,18 @@ public class InterfaceBD {
         return ret;
     }
     
+    public boolean registaCliente(Cliente c){
+        boolean ret = true;
+        if(getConnection()){
+            String query = "insert or update into cliente (id, nome, morada, telf, mail) values ("+c.getId_Cli()+","+c.getNome()+","+c.getMorada()+","+c.getTelf()+","+c.getMail()+")";
+            if(!insert(query)){
+                ret= false;
+            }
+        }else{
+            ret = false;
+        }
+        return ret;
+    }
+    
     
 }

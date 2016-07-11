@@ -94,7 +94,8 @@ public class Cliente {
         this.mail = mail;
     }
     
-    
-   
-  
+   @Override
+    public String toString(){
+        return "--------------------\nID:\t"+id_Cli+"\nNome:\t"+nome+"\nMorada:\t"+morada+"\nTelefone:\t"+telf+"\ne-mail:\t"+mail;
+    }
 }
