@@ -10,8 +10,8 @@ package projfinaljavase;
  * @author João
  */
 public class Cliente {
-    
-   private int id_Cli;
+
+    private int id_Cli;
     private String nome;
     private String morada;
     private int telf;
@@ -23,7 +23,7 @@ public class Cliente {
         this.telf = telf;
         this.mail = mail;
     }
-    
+
     /**
      * @return the id_Cli
      */
@@ -93,9 +93,9 @@ public class Cliente {
     public void setMail(String mail) {
         this.mail = mail;
     }
-    
-   @Override
-    public String toString(){
-        return "--------------------\nID:\t"+id_Cli+"\nNome:\t"+nome+"\nMorada:\t"+morada+"\nTelefone:\t"+telf+"\ne-mail:\t"+mail;
+
+    @Override
+    public String toString() {
+        return "--------------------\nID:\t" + id_Cli + "\nNome:\t" + nome + "\nMorada:\t" + morada + "\nTelefone:\t" + telf + "\ne-mail:\t" + mail;
     }
 }

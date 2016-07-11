@@ -5,55 +5,50 @@
  */
 package projfinaljavase;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
+import java.io.FileOutputStream;
 import java.io.IOException;
-
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author vitorfilipe
  */
 public class Ficheiro {
-    
-    
 
-    public void ficheiro(Cliente cli) throws FileNotFoundException, IOException {
+//guarda em ficheiro binário a lista
+    public void ficheiroBinGuardar(List bin) {
 
-        BufferedReader inputStream = null;
-        BufferedWriter outputStream = null;
-        int c;
-        int i = 0;
-        
+        FileOutputStream fout;
         try {
-            
-            outputStream = new BufferedWriter(new FileWriter("geststok_output.txt"));
-            String out = cli.getNome()+";"+cli.getMorada()+";"+cli.getTelf()+";"+cli.getMail();
-            outputStream.write(out);
-            outputStream.close();
-            
-            
-            inputStream = new BufferedReader(new FileReader("geststok_output.txt")); 
-            String in = inputStream.readLine();
-            System.out.println(in);
-            String[] in2 = in.split(";");
-            Cliente cli2 = new Cliente(in2[0], in2[1], Integer.parseInt(in2[2]), in2[3]);
-            System.out.println("isto é o cliente importado do ficheiro:\n"+cli2.toString());
+            fout = new FileOutputStream("geststock_output.bin");
+            ObjectOutputStream oos = new ObjectOutputStream(fout);
 
-        } finally {
+            oos.writeObject(bin);
 
-            if (inputStream != null) {
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Ficheiro.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Ficheiro.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
-                inputStream.close();
-            }
+    public void ficheiroBinLer(List bin) {
 
-            if (outputStream != null) {
-
-                outputStream.close();
-            }
+        FileInputStream fin;
+        try {
+            fin = new FileInputStream("geststock_output.bin");
+            ObjectInputStream ois = new ObjectInputStream(fin);
+            bin = (List) ois.readObject();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Ficheiro.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException | ClassNotFoundException ex) {
+            Logger.getLogger(Ficheiro.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }
