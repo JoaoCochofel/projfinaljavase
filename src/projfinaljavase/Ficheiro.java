@@ -21,20 +21,27 @@ public class Ficheiro {
     
     
 
-    public void ficheiro() throws FileNotFoundException, IOException {
+    public void ficheiro(Cliente cli) throws FileNotFoundException, IOException {
 
         BufferedReader inputStream = null;
         BufferedWriter outputStream = null;
-        String c;
-
+        int c;
+        int i = 0;
+        
         try {
-
-            inputStream = new BufferedReader(new FileReader("geststok_input.txt"));
+            
             outputStream = new BufferedWriter(new FileWriter("geststok_output.txt"));
-            while ((c = inputStream.readLine()) != null) {
-                outputStream.write(c);
-
-            }
+            String out = cli.getNome()+";"+cli.getMorada()+";"+cli.getTelf()+";"+cli.getMail();
+            outputStream.write(out);
+            outputStream.close();
+            
+            
+            inputStream = new BufferedReader(new FileReader("geststok_output.txt")); 
+            String in = inputStream.readLine();
+            System.out.println(in);
+            String[] in2 = in.split(";");
+            Cliente cli2 = new Cliente(in2[0], in2[1], Integer.parseInt(in2[2]), in2[3]);
+            System.out.println("isto é o cliente importado do ficheiro:\n"+cli2.toString());
 
         } finally {
 
@@ -48,6 +55,5 @@ public class Ficheiro {
                 outputStream.close();
             }
         }
-
     }
 }

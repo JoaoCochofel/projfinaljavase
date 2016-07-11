@@ -47,17 +47,66 @@ public class GesStock {
         List subEnc = new ArrayList();
         Encomenda e;
         for (Encomenda encomenda : encomendas) {
-            if(it.hasNext()){
                 e = (Encomenda)it.next();
                 if(e.getCli().getId_Cli() == id_cliente){
                     subEnc.add(e);
                 }
-            }
         }
         
         return getList(subEnc);
     }
     
+    public String getProdutoPreco(float f){
+        Iterator it = produtos.iterator();
+        List subL = new ArrayList();
+        Produto p;
+        for (Produto prod : produtos) {
+            p = (Produto) it.next();
+            if(p.getPrc() == f){
+                subL.add(p);
+            }
+        }
+        return getList(subL);
+    }
+    
+    public String getProdutoID(int id){
+        Iterator it = produtos.iterator();
+        List subL = new ArrayList();
+        Produto p;
+        for (Produto prod : produtos) {
+            p = (Produto) it.next();
+            if(p.getId_Prod()== id){
+                subL.add(p);
+            }
+        }
+        return getList(subL);
+    }
+    
+    public String getProdutoNome(String nome){
+        Iterator it = produtos.iterator();
+        List subL = new ArrayList();
+        Produto p;
+        for (Produto prod : produtos) {
+            p = (Produto) it.next();
+            if(p.getDesig().compareToIgnoreCase(nome)==0){
+                subL.add(p);
+            }
+        }
+        return getList(subL);
+    }
+    
+    public String getProdutosStockZero(){
+        Iterator it = produtos.iterator();
+        List subL = new ArrayList();
+        Produto p;
+        for (Produto prod : produtos) {
+            p = (Produto) it.next();
+            if(p.getStock()== 0){
+                subL.add(p);
+            }
+        }
+        return getList(subL);
+    }
     /**
      * @return the clientes
      */
