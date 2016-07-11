@@ -14,9 +14,11 @@ import java.util.Scanner;
 public class Menu {
 
     private int escolha;
+    private GesStock gs;
 
     public void menu() {
-
+        
+        gs = new GesStock();
         do {
 
             System.out.println("Main Menu");
@@ -67,8 +69,11 @@ public class Menu {
 
         System.out.println("Insira o nome de um Produto");
         desig = in.next();
-        
-        
+        System.out.println("Insira o Stock do Produto");
+        stock = Integer.parseInt(in.next());
+        System.out.println("Insira o PVP");
+        prc = Integer.parseInt(in.next());
+        gs.registaProducto(desig, stock, prc);
 
     }
 
