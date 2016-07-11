@@ -42,6 +42,11 @@ public class GesStock {
         return getList(encomendas);
     }
     
+    public String getEncomendasCliente(int id_cliente){
+        
+        return "";
+    }
+    
     /**
      * @return the clientes
      */

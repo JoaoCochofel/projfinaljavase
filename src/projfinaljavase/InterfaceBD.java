@@ -130,12 +130,21 @@ public class InterfaceBD {
     
     public boolean registaProduto(Produto p){
         boolean ret = true;
-        
+        String query="";
         if(getConnection()){
-            //verifica se o id do objecto já existe na bd, caso exista retorna falso e dá cócó
-            String query = "insert into produto (id, desig, stock, prc) values ("+p.getId_Prod()+","+p.getDesig()+","+p.getStock()+","+p.getPrc()+")";
-            if(!insert(query)){
-                ret= false;
+            query = "select * from produto where produto.id = "+p.getId_Prod();
+            ResultSet rs = queryBD(query);
+            try {
+                if(!rs.next()){
+                    query = "insert into produto (id, desig, stock, prc) values ("+p.getId_Prod()+","+p.getDesig()+","+p.getStock()+","+p.getPrc()+")";
+                    if(!insert(query)){
+                        ret= false;
+                    }
+                }else{
+                    ret=false;
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(InterfaceBD.class.getName()).log(Level.SEVERE, null, ex);
             }
         }else{
             ret = false;
@@ -147,11 +156,21 @@ public class InterfaceBD {
     
     public boolean registaCliente(Cliente c){
         boolean ret = true;
+        String query ="";
         if(getConnection()){
-            //verifica se o id do objecto já existe na bd, caso exista retorna falso e dá cócó
-            String query = "insert into cliente (id, nome, morada, telf, mail) values ("+c.getId_Cli()+","+c.getNome()+","+c.getMorada()+","+c.getTelf()+","+c.getMail()+")";
-            if(!insert(query)){
-                ret= false;
+            query = "select * from cliente where cliente.id = "+c.getId_Cli();
+            ResultSet rs = queryBD(query);
+            try {
+                if(!rs.next()){
+                    query = "insert into cliente (id, nome, morada, telf, mail) values ("+c.getId_Cli()+","+c.getNome()+","+c.getMorada()+","+c.getTelf()+","+c.getMail()+")";
+                    if(!insert(query)){
+                        ret= false;
+                    }
+                }else{
+                    ret=false;
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(InterfaceBD.class.getName()).log(Level.SEVERE, null, ex);
             }
         }else{
             ret = false;
