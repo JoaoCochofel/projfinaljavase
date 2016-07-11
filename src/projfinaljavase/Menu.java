@@ -15,9 +15,10 @@ public class Menu {
 
     private int escolha;
     private GesStock gs;
+    private Scanner in = new Scanner(System.in);
 
     public void menu() {
-        
+
         gs = new GesStock();
         do {
 
@@ -36,7 +37,7 @@ public class Menu {
 
                     break;
                 case 2:
-
+                    ResgCli();
                     break;
 
                 case 3:
@@ -65,15 +66,51 @@ public class Menu {
         int stock;
         float prc;
 
-        Scanner in = new Scanner(System.in);
-
-        System.out.println("Insira o nome de um Produto");
+        System.out.println("Insira o nome de um Produto:");
         desig = in.next();
-        System.out.println("Insira o Stock do Produto");
+        System.out.println("Insira o Stock do Produto:");
         stock = Integer.parseInt(in.next());
-        System.out.println("Insira o PVP");
+        System.out.println("Insira o PVP:");
         prc = Integer.parseInt(in.next());
-        gs.registaProducto(desig, stock, prc);
+
+        if (gs.registaProducto(desig, stock, prc)) {
+
+            System.out.println("Produto registado com sucesso!!!");
+
+        } else {
+            System.out.println("As nossas desculpas!!");
+            System.out.println("Houve um erro ao resgitar o Produto");
+            System.out.println("Insira novamente!!!");
+        }
+
+    }
+
+    public void ResgCli() {
+
+        String nome;
+        String morada;
+        int telf;
+        String mail;
+
+        System.out.println("Insira o nome do Cliente:");
+        nome = in.next();
+        System.out.println("Insira uma Morada:");
+        morada = in.next();
+        System.out.println("Insira um E-Mail:");
+        mail = in.next();
+        System.out.println("Insira um contacto telefónico");
+        telf = Integer.parseInt(in.next());
+
+        //falta inserir os parametros
+        if (gs.registaCliente()) {
+
+            System.out.println("Cliente registado com sucesso!!!");
+
+        } else {
+            System.out.println("As nossas desculpas!!");
+            System.out.println("Houve um erro ao resgitar o Cliente");
+            System.out.println("Insira novamente!!!");
+        }
 
     }
 
