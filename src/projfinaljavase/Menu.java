@@ -102,7 +102,7 @@ public class Menu {
         telf = Integer.parseInt(in.next());
 
         //falta inserir os parametros
-        if (gs.registaCliente()) {
+        if (gs.registaCliente(nome, morada, telf, mail)) {
 
             System.out.println("Cliente registado com sucesso!!!");
 
