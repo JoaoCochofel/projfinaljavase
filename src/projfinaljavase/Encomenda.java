@@ -67,6 +67,4 @@ public class Encomenda {
         this.qtd = qtd;
     }
     
-    
-    
 }
