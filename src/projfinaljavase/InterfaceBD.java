@@ -86,6 +86,19 @@ public class InterfaceBD {
         }
         return rs;
     }
+    
+    private boolean updateQueryBD(String query){
+        boolean ret = true;
+        try{
+            stmt = (Statement) con.createStatement();
+            stmt.executeUpdate(query);
+        }catch(SQLException ex){
+            Logger.getLogger(InterfaceBD.class.getName()).log(Level.SEVERE, null, ex);
+            ret=false;
+        }
+        
+        return ret;
+    }
 
     private boolean insert(String insert) {
         boolean ret = true;
@@ -207,6 +220,18 @@ public class InterfaceBD {
         }
         closeStatement();
         closeConection();
+        return ret;
+    }
+    
+    public boolean updateStock(int id,int newVal){
+        boolean ret = true;
+        String query = "";
+        if(getConnection()){
+            query = "update produto set stock = " + newVal +" where id = "+id;
+            if(!updateQueryBD(query)){
+                ret = false;
+            }
+        }
         return ret;
     }
 

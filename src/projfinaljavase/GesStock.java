@@ -54,16 +54,12 @@ public class GesStock {
      */
     
     public String getEncomendasCliente(int id_cliente){
-        Iterator it = encomendas.iterator();
         List subEnc = new ArrayList();
-        Encomenda e;
         for (Encomenda encomenda : encomendas) {
-                e = (Encomenda)it.next();
-                if(e.getCli().getId_Cli() == id_cliente){
-                    subEnc.add(e);
+                if(encomenda.getCli().getId_Cli() == id_cliente){
+                    subEnc.add(encomenda);
                 }
         }
-        
         return getList(subEnc);
     }
     
@@ -169,12 +165,9 @@ public class GesStock {
      */
     private String getList(List l) {
         StringBuilder concat = null;
-        Iterator it = l.iterator();
-        Object obj;
-        String str = "";
+        String str;
         try {
-            while (it.hasNext()) { //possivel trocar while por forEach
-                obj = it.next();
+            for (Object obj : l) {
                 concat.append(obj.toString());
             }
             concat.append("--------------------");
@@ -277,6 +270,27 @@ public class GesStock {
     }
     
     
+    public boolean aquisicaoStock(int qtd, int id){
+        boolean ret = true;
+        Produto p = null;
+        Iterator prIterator = produtos.iterator();
+        while(prIterator.hasNext()){
+            p = (Produto)prIterator.next();
+            if (p.getId_Prod() == id) {
+                break;
+            }
+        }
+        if(p!=null){
+            p.incStock(qtd);
+            if(!bd.updateStock(p.getId_Prod(),p.getStock())){
+                ret = false;
+            }
+        }else{
+            ret = false;
+        }
+        return ret;
+    }
+    
     /**
      * Este metodo recebe o Id do cliente que quer comprar, o id do produto e a quantidade e retorna o valor total da encomenda
      * 
@@ -306,16 +320,24 @@ public class GesStock {
                 break;
             }
         }
-        e = new Encomenda(c, p, new Date(), qtd);
+        try{
+            e = new Encomenda(c, p, new Date(), qtd);
+        }catch(NullPointerException ex){
+            return -1;
+        }
         
         e.setId_Enc(bd.getNextID(2)+1);
         if(!bd.registaEncomenda(e)){
             ret = -1;
         }else{
-            encomendas.add(e);
-            ret = p.getPrc()*qtd;
+            if(p.decStock(qtd)==0){
+                encomendas.add(e);
+                bd.updateStock(p.getId_Prod(),p.getStock());
+                ret = p.getPrc()*qtd;
+            }else{
+                ret = -1;
+            }
         }
-        
         return ret;
     }
 }
