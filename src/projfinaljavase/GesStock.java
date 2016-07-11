@@ -19,6 +19,7 @@ public class GesStock {
     private static List<Produto> produtos;
     private static List<Cliente> clientes;
     private static List<Encomenda> encomendas;
+    private static InterfaceBD bd;
     
     //humm.. não faz sentido aqui.
     //private Connection BDConnection=null; 
@@ -27,6 +28,7 @@ public class GesStock {
         produtos = new ArrayList<Produto>();
         clientes = new ArrayList<Cliente>();
         encomendas = new ArrayList<Encomenda>();
+        bd = new InterfaceBD();
     }
 
     /**
@@ -99,16 +101,18 @@ public class GesStock {
     }
     
     
-    public boolean registaProducto(){
-        
+    public boolean registaProducto(String desig, int stock, int prc){
+        Produto p = criaObjProd(desig, stock, prc);
+        p.setId_Prod(bd.getNextID(1));
+        produtos.add(p);
         return true; //meh
     }
     
-    /*
-    private Produto criaObjProd(){
-        
-        return ;
-    }*/
+    
+    private Produto criaObjProd(String desig, int stock, int prc){
+        Produto p = new Produto(desig, stock, prc);
+        return p;
+    }
     
     public boolean registaCliente(){
         return true;

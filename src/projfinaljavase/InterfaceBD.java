@@ -68,4 +68,28 @@ public class InterfaceBD {
     }
     
     
+    public int getNextID(int i){
+        String tabela="";
+        int nextID= -1;
+        getConnection();
+        switch(i){
+            case 0: tabela = "cliente"; break;
+            case 1: tabela = "produto"; break;
+            case 2: tabela = "encomenda"; break;
+        }
+        ResultSet rs = queryBD("select max("+tabela+".id) from "+tabela);
+        try {
+            rs.next();
+            nextID = rs.getInt(1);
+        } catch (SQLException ex) {
+            Logger.getLogger(InterfaceBD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return nextID;
+    }
+    /*
+    public boolean registaProduto(Produto p){
+        
+    }*/
+    
+    
 }

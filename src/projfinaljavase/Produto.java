@@ -14,11 +14,13 @@ public class Produto {
     private int id_Prod;
     private String desig;
     private int stock;
-    private int prc;
-    private int incStock;
-    private int decStock;
+    private float prc;
     
-    
+    public Produto(String desig, int stock, float prc){
+        this.desig = desig;
+        this.stock = stock;
+        this.prc = prc;
+    }
 
     public int getId_Prod() {
         return id_Prod;
@@ -40,23 +42,25 @@ public class Produto {
         return stock;
     }
 
-    public int getPrc() {
+    public float getPrc() {
         return prc;
     }
 
-    public void setPrc(int prc) {
+    public void setPrc(float prc) {
         this.prc = prc;
     }
     
-    public void incStock(){
-        
-        incStock=++stock;
-
+    public void incStock(int a){
+        stock+=a;
     }
     
-    public void decStock(){
-        
-        decStock=--stock;
-        
+    public int decStock(int a){
+        int ret;
+        if(stock-a<0){
+            ret = stock;
+        }else{
+            ret = 0;
+        }
+        return ret;
     }
 }
