@@ -46,6 +46,8 @@ public class InterfaceBD {
         }
     }
     
+    /*private void closeConection*/
+    
     /**
      * Este metodo recebe uma string query e retorna o ResultSet do retorno da chamada dessa query à base de dados.
      * 
@@ -86,9 +88,10 @@ public class InterfaceBD {
         }
         return nextID;
     }
-    /*
-    public boolean registaProduto(Produto p){
-        
+    
+    
+    /*public boolean registaProduto(Produto p){
+        getConnection();
     }*/
     
     

@@ -101,7 +101,7 @@ public class GesStock {
     }
     
     
-    public boolean registaProducto(String desig, int stock, int prc){
+    public boolean registaProducto(String desig, int stock, float prc){
         Produto p = criaObjProd(desig, stock, prc);
         p.setId_Prod(bd.getNextID(1));
         produtos.add(p);
@@ -109,7 +109,7 @@ public class GesStock {
     }
     
     
-    private Produto criaObjProd(String desig, int stock, int prc){
+    private Produto criaObjProd(String desig, int stock, float prc){
         Produto p = new Produto(desig, stock, prc);
         return p;
     }
