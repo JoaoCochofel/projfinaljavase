@@ -5,7 +5,6 @@
  */
 package projfinaljavase;
 
-import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -21,8 +20,6 @@ public class GesStock {
     private static List<Encomenda> encomendas;
     private static InterfaceBD bd;
     
-    //humm.. não faz sentido aqui.
-    //private Connection BDConnection=null; 
     
     public GesStock(){
         produtos = new ArrayList<Produto>();
@@ -92,7 +89,7 @@ public class GesStock {
             obj = it.next();
             concat.append(obj.toString());
         }
-        
+        concat.append("--------------------");
         str = concat.substring(0);
         }catch(NullPointerException e){
             str="";

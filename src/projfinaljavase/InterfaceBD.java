@@ -132,26 +132,32 @@ public class InterfaceBD {
         boolean ret = true;
         
         if(getConnection()){
-            String query = "insert or update into produto (id, desig, stock, prc) values ("+p.getId_Prod()+","+p.getDesig()+","+p.getStock()+","+p.getPrc()+")";
+            //verifica se o id do objecto já existe na bd, caso exista retorna falso e dá cócó
+            String query = "insert into produto (id, desig, stock, prc) values ("+p.getId_Prod()+","+p.getDesig()+","+p.getStock()+","+p.getPrc()+")";
             if(!insert(query)){
                 ret= false;
             }
         }else{
             ret = false;
         }
+        closeStatement();
+        closeConection();
         return ret;
     }
     
     public boolean registaCliente(Cliente c){
         boolean ret = true;
         if(getConnection()){
-            String query = "insert or update into cliente (id, nome, morada, telf, mail) values ("+c.getId_Cli()+","+c.getNome()+","+c.getMorada()+","+c.getTelf()+","+c.getMail()+")";
+            //verifica se o id do objecto já existe na bd, caso exista retorna falso e dá cócó
+            String query = "insert into cliente (id, nome, morada, telf, mail) values ("+c.getId_Cli()+","+c.getNome()+","+c.getMorada()+","+c.getTelf()+","+c.getMail()+")";
             if(!insert(query)){
                 ret= false;
             }
         }else{
             ret = false;
         }
+        closeStatement();
+        closeConection();
         return ret;
     }
     
