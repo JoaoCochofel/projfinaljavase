@@ -6,6 +6,7 @@
 package projfinaljavase;
 
 import java.util.Scanner;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -22,37 +23,46 @@ public class Menu {
         gs = new GesStock();
         do {
 
-            System.out.println("Main Menu");
+            
+           
+            
+            System.out.println("Menu");
             System.out.println("1. Registo de Produto");
             System.out.println("2. Registo de Cliente");
             System.out.println("3. Consultas");
             System.out.println("4. Vendas de Produtos");
             System.out.println("5. Sair do Programa");
-
+            
+            escolha = Integer.parseInt(in.next());
+            
+            
             switch (escolha) {
 
                 case 1:
 
                     ResgProd();
-
                     break;
                 case 2:
+                   
                     ResgCli();
                     break;
 
                 case 3:
+                    
+//                    Consul();
                     break;
 
                 case 4:
+                    
+                    
                     break;
 
-                case 0:
+                case 5:
+                    
                     System.out.println("Até à próxima");
                     System.exit(0);
 
                     break;
-
-                default:
 
             }
 
@@ -71,7 +81,7 @@ public class Menu {
         System.out.println("Insira o Stock do Produto:");
         stock = Integer.parseInt(in.next());
         System.out.println("Insira o PVP:");
-        prc = Integer.parseInt(in.next());
+        prc = Float.parseFloat(in.next());
 
         if (gs.registaProducto(desig, stock, prc)) {
 
@@ -101,7 +111,6 @@ public class Menu {
         System.out.println("Insira um contacto telefónico");
         telf = Integer.parseInt(in.next());
 
-        //falta inserir os parametros
         if (gs.registaCliente(nome, morada, telf, mail)) {
 
             System.out.println("Cliente registado com sucesso!!!");
@@ -113,5 +122,17 @@ public class Menu {
         }
 
     }
+    
+//    private void Consul(){
+//        
+//        do do {                
+//                
+//            } while (true);
+//        
+//        
+//        
+//        
+//        
+//    }
 
 }
