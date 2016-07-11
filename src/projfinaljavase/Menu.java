@@ -25,8 +25,8 @@ public class Menu {
 
             
            
-            
-            System.out.println("Menu");
+            System.out.println("\n");
+            System.out.println("Menu\n");
             System.out.println("1. Registo de Produto");
             System.out.println("2. Registo de Cliente");
             System.out.println("3. Consultas");
