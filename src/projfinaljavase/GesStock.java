@@ -5,7 +5,9 @@
  */
 package projfinaljavase;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -149,7 +151,7 @@ public class GesStock {
         Object obj;
         String str = "";
         try {
-            while (it.hasNext()) {
+            while (it.hasNext()) { //possivel trocar while por forEach
                 obj = it.next();
                 concat.append(obj.toString());
             }
@@ -193,5 +195,58 @@ public class GesStock {
     private Cliente criaObjClt(String nome, String morada, int telf, String mail) {
         Cliente c = new Cliente(nome, morada, telf, mail);
         return c;
+    }
+    
+    public String getIdNomeClientes(){
+        StringBuilder concat = null;
+        String str ="";
+        
+        for (Cliente cliente : clientes) {
+            concat.append(cliente.getId_Cli());
+            concat.append(": ");
+            concat.append(cliente.getNome());
+            concat.append("\t");
+        }
+        str = concat.substring(0);
+        return str;
+    }
+    
+    public String getIdDesigProduto(){
+        StringBuilder concat = null;
+        String str ="";
+        
+        for (Produto produto : produtos) {
+            concat.append(produto.getId_Prod());
+            concat.append(": ");
+            concat.append(produto.getDesig());
+            concat.append("\t");
+        }
+        str = concat.substring(0);
+        return str;
+    }
+    
+    public float registaEncomenda(int idCliente, int idProduto, int qtd){
+        Cliente c = null;
+        Produto p = null;
+        Encomenda e = null;
+        DateFormat data;
+        
+        Iterator clIterator = clientes.iterator(), prIterator = produtos.iterator();
+        
+        while(clIterator.hasNext()){
+            c = (Cliente)clIterator.next();
+            if (c.getId_Cli() == idCliente) {
+                break;
+            }
+        }
+        while(prIterator.hasNext()){
+            p = (Produto)prIterator.next();
+            if (p.getId_Prod() == idProduto) {
+                break;
+            }
+        }
+        e = new Encomenda(c, p, new Date(), qtd);
+        
+        return p.getPrc()*qtd;
     }
 }
