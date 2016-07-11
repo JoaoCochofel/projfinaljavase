@@ -5,13 +5,71 @@
  */
 package projfinaljavase;
 
+import java.util.Scanner;
+
 /**
  *
  * @author João
  */
 public class Menu {
-    
-    
-    
-    
+
+    private int escolha;
+
+    public void menu() {
+
+        do {
+
+            System.out.println("Main Menu");
+            System.out.println("1. Registo de Produto");
+            System.out.println("2. Registo de Cliente");
+            System.out.println("3. Consultas");
+            System.out.println("4. Vendas de Produtos");
+            System.out.println("5. Sair do Programa");
+
+            switch (escolha) {
+
+                case 1:
+
+                    ResgProd();
+
+                    break;
+                case 2:
+
+                    break;
+
+                case 3:
+                    break;
+
+                case 4:
+                    break;
+
+                case 0:
+                    System.out.println("Até à próxima");
+                    System.exit(0);
+
+                    break;
+
+                default:
+
+            }
+
+        } while (true);
+
+    }
+
+    public void ResgProd() {
+
+        String desig;
+        int stock;
+        float prc;
+
+        Scanner in = new Scanner(System.in);
+
+        System.out.println("Insira o nome de um Produto");
+        desig = in.next();
+        
+        
+
+    }
+
 }
