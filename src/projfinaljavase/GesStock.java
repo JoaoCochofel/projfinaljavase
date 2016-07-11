@@ -312,10 +312,14 @@ public class GesStock {
         if(!bd.registaEncomenda(e)){
             ret = -1;
         }else{
-            encomendas.add(e);
-            ret = p.getPrc()*qtd;
+            if(p.decStock(qtd)==0){
+                encomendas.add(e);
+                bd.updateStock(p.getId_Prod(),p.getStock());
+                ret = p.getPrc()*qtd;
+            }else{
+                ret = -1;
+            }
         }
-        
         return ret;
     }
 }
