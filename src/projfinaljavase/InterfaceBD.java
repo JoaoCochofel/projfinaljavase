@@ -18,16 +18,15 @@ import java.util.logging.Logger;
  * @author João
  */
 public class InterfaceBD {
-    
-    
-    private static Connection con=null; 
-    private static Statement stmt=null;
-    private static final String JDBC_DRIVER="org.apache.derby.jdbc.ClientDriver"; 
-    private static final String DB_URL="jdbc:derby://localhost:1527/GestStock"; 
-    private static final String USER="GestStock";
-    private static final String PASS="GestStock";
-    
-    private boolean getConnection(){
+
+    private static Connection con = null;
+    private static Statement stmt = null;
+    private static final String JDBC_DRIVER = "org.apache.derby.jdbc.ClientDriver";
+    private static final String DB_URL = "jdbc:derby://localhost:1527/GestStock";
+    private static final String USER = "GestStock";
+    private static final String PASS = "GestStock";
+
+    private boolean getConnection() {
         boolean ret = true;
         try {
             //Registar o JDBC driver, não esquecer de adicionar nas Libraries do Proj.
@@ -36,45 +35,46 @@ public class InterfaceBD {
             System.out.println("Erro com JDBC_DRIVER");
             Logger.getLogger(InterfaceBD.class.getName()).log(Level.SEVERE, null, ex);
             ret = false;
-            
+
         }
         try {
             //Abrir a Ligação à BD
-            con=DriverManager.getConnection(DB_URL, USER, PASS);
+            con = DriverManager.getConnection(DB_URL, USER, PASS);
         } catch (SQLException ex) {
             System.out.println("Erro a ligar com a base de dados");
             Logger.getLogger(InterfaceBD.class.getName()).log(Level.SEVERE, null, ex);
             ret = false;
         }
-        
+
         return ret;
     }
-    
-    private void closeConection(){
+
+    private void closeConection() {
         try {
             con.close();
         } catch (SQLException ex) {
             Logger.getLogger(InterfaceBD.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    private void closeStatement(){
+
+    private void closeStatement() {
         try {
             stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(InterfaceBD.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     /**
-     * Este metodo recebe uma string query e retorna o ResultSet do retorno da chamada dessa query à base de dados.
-     * 
-     * @param query 
+     * Este metodo recebe uma string query e retorna o ResultSet do retorno da
+     * chamada dessa query à base de dados.
+     *
+     * @param query
      * @return ResultSet da query
      */
-    private ResultSet queryBD(String query){
+    private ResultSet queryBD(String query) {
         try {
-            stmt=(Statement) con.createStatement();
+            stmt = (Statement) con.createStatement();
         } catch (SQLException ex) {
             Logger.getLogger(InterfaceBD.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -86,14 +86,14 @@ public class InterfaceBD {
         }
         return rs;
     }
-    
-    private boolean insert(String insert){
+
+    private boolean insert(String insert) {
         boolean ret = true;
         try {
             stmt = (Statement) con.createStatement();
         } catch (SQLException ex) {
             Logger.getLogger(InterfaceBD.class.getName()).log(Level.SEVERE, null, ex);
-            ret= false;
+            ret = false;
         }
         try {
             stmt.executeUpdate(insert);
@@ -104,18 +104,23 @@ public class InterfaceBD {
 
         return ret;
     }
-    
-    
-    public int getNextID(int i){
-        String tabela="";
-        int nextID= -1;
+
+    public int getNextID(int i) {
+        String tabela = "";
+        int nextID = -1;
         getConnection();
-        switch(i){
-            case 0: tabela = "cliente"; break;
-            case 1: tabela = "produto"; break;
-            case 2: tabela = "encomenda"; break;
+        switch (i) {
+            case 0:
+                tabela = "cliente";
+                break;
+            case 1:
+                tabela = "produto";
+                break;
+            case 2:
+                tabela = "encomenda";
+                break;
         }
-        ResultSet rs = queryBD("select max("+tabela+".id) from "+tabela);
+        ResultSet rs = queryBD("select max(" + tabela + ".id) from " + tabela);
         try {
             rs.next();
             nextID = rs.getInt(1);
@@ -126,59 +131,57 @@ public class InterfaceBD {
         closeConection();
         return nextID;
     }
-    
-    
-    public boolean registaProduto(Produto p){
+
+    public boolean registaProduto(Produto p) {
         boolean ret = true;
-        String query="";
-        if(getConnection()){
-            query = "select * from produto where produto.id = "+p.getId_Prod();
+        String query = "";
+        if (getConnection()) {
+            query = "select * from produto where produto.id = " + p.getId_Prod();
             ResultSet rs = queryBD(query);
             try {
-                if(!rs.next()){
-                    query = "insert into produto (id, desig, stock, prc) values ("+p.getId_Prod()+","+p.getDesig()+","+p.getStock()+","+p.getPrc()+")";
-                    if(!insert(query)){
-                        ret= false;
+                if (!rs.next()) {
+                    query = "insert into produto (id, desig, stock, prc) values (" + p.getId_Prod() + "," + p.getDesig() + "," + p.getStock() + "," + p.getPrc() + ")";
+                    if (!insert(query)) {
+                        ret = false;
                     }
-                }else{
-                    ret=false;
+                } else {
+                    ret = false;
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(InterfaceBD.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }else{
+        } else {
             ret = false;
         }
         closeStatement();
         closeConection();
         return ret;
     }
-    
-    public boolean registaCliente(Cliente c){
+
+    public boolean registaCliente(Cliente c) {
         boolean ret = true;
-        String query ="";
-        if(getConnection()){
-            query = "select * from cliente where cliente.id = "+c.getId_Cli();
+        String query = "";
+        if (getConnection()) {
+            query = "select * from cliente where cliente.id = " + c.getId_Cli();
             ResultSet rs = queryBD(query);
             try {
-                if(!rs.next()){
-                    query = "insert into cliente (id, nome, morada, telf, mail) values ("+c.getId_Cli()+","+c.getNome()+","+c.getMorada()+","+c.getTelf()+","+c.getMail()+")";
-                    if(!insert(query)){
-                        ret= false;
+                if (!rs.next()) {
+                    query = "insert into cliente (id, nome, morada, telf, mail) values (" + c.getId_Cli() + "," + c.getNome() + "," + c.getMorada() + "," + c.getTelf() + "," + c.getMail() + ")";
+                    if (!insert(query)) {
+                        ret = false;
                     }
-                }else{
-                    ret=false;
+                } else {
+                    ret = false;
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(InterfaceBD.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }else{
+        } else {
             ret = false;
         }
         closeStatement();
         closeConection();
         return ret;
     }
-    
-    
+
 }

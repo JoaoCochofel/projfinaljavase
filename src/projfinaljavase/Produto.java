@@ -10,13 +10,13 @@ package projfinaljavase;
  * @author João
  */
 public class Produto {
-    
+
     private int id_Prod;
     private String desig;
     private int stock;
     private float prc;
-    
-    public Produto(String desig, int stock, float prc){
+
+    public Produto(String desig, int stock, float prc) {
         this.desig = desig;
         this.stock = stock;
         this.prc = prc;
@@ -49,23 +49,23 @@ public class Produto {
     public void setPrc(float prc) {
         this.prc = prc;
     }
-    
-    public void incStock(int a){
-        stock+=a;
+
+    public void incStock(int a) {
+        stock += a;
     }
-    
-    public int decStock(int a){
+
+    public int decStock(int a) {
         int ret;
-        if(stock-a<0){
+        if (stock - a < 0) {
             ret = stock;
-        }else{
+        } else {
             ret = 0;
         }
         return ret;
     }
-    
+
     @Override
-    public String toString(){
-        return "--------------------\nID:\t"+id_Prod+"\nDesignacao:\t"+desig+"\nPreco:\t"+prc+"\nStock:\t"+stock;
+    public String toString() {
+        return "--------------------\nID:\t" + id_Prod + "\nDesignacao:\t" + desig + "\nPreco:\t" + prc + "\nStock:\t" + stock;
     }
 }

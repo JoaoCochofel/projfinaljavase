@@ -12,7 +12,7 @@ import java.util.Date;
  * @author João
  */
 public class Encomenda {
-    
+
     private int id_Enc;
     private Cliente cli;
     private Produto prod;
@@ -50,7 +50,6 @@ public class Encomenda {
         this.prod = prod;
     }
 
-
     public Date getData() {
         return data;
     }
@@ -66,10 +65,10 @@ public class Encomenda {
     public void setQtd(int qtd) {
         this.qtd = qtd;
     }
-    
+
     @Override
-    public String toString(){
-        return "--------------------\nID:\t"+id_Enc+"\nCliente:\t"+cli.getNome()+"\nProduto:\t"+prod.getDesig()+"\nQuantidade\t"+qtd+"\nData:\t"+data.toString();
+    public String toString() {
+        return "--------------------\nID:\t" + id_Enc + "\nCliente:\t" + cli.getNome() + "\nProduto:\t" + prod.getDesig() + "\nQuantidade\t" + qtd + "\nData:\t" + data.toString();
     }
-    
+
 }

@@ -120,15 +120,16 @@ public class Menu {
     }
 
     private void Consulta() {
-        
+
         System.out.println("\n");
-            System.out.println("Menu\n");
-            System.out.println("1. ");
-            System.out.println("2. ");
-            System.out.println("3. ");
-            System.out.println("4.Guarda dados para ficheiro ");
-            System.out.println("5. Sair do Programa");
-        
+        System.out.println("Menu\n");
+        System.out.println("1. Listar Stock de Produtos");
+        System.out.println("2. Listar Clientes");
+        System.out.println("3. Histórico Clientes");
+        System.out.println("4.Procurar Produtos ");
+        System.out.println("5.Guarda dados para ficheiro");
+        System.out.println("6. Menu Anterior");
+
         escolha = Integer.parseInt(in.next());
 
         do {
@@ -136,8 +137,28 @@ public class Menu {
             switch (escolha) {
 
                 case 1:
-                    
+
                     //criar metodo para menu!!!
+                    break;
+                case 2:
+
+                    //criar metodo para menu!!!
+                    break;
+                case 3:
+
+                    //criar metodo para menu!!!
+                    break;
+                case 4:
+
+                    //criar metodo para menu!!!
+                    break;
+                case 5:
+
+                    //criar metodo para menu!!!3
+                    break;
+                case 6:
+
+                    menu();
                     break;
 
             }

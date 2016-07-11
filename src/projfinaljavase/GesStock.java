@@ -14,14 +14,13 @@ import java.util.List;
  * @author João
  */
 public class GesStock {
-    
+
     private static List<Produto> produtos;
     private static List<Cliente> clientes;
     private static List<Encomenda> encomendas;
     private static InterfaceBD bd;
-    
-    
-    public GesStock(){
+
+    public GesStock() {
         produtos = new ArrayList<Produto>();
         clientes = new ArrayList<Cliente>();
         encomendas = new ArrayList<Encomenda>();
@@ -34,106 +33,104 @@ public class GesStock {
     public String getProdutos() {
         return getList(produtos);
     }
-    
+
     /**
      * @return the encomendas
      */
     public String getEncomendas() {
         return getList(encomendas);
     }
-    
-    public String getEncomendasCliente(int id_cliente){
-        
+
+    public String getEncomendasCliente(int id_cliente) {
+
         return "";
     }
-    
+
     /**
      * @return the clientes
      */
-    
     public String getClientes() {
         return getList(clientes);
     }
 
-    
     //a pensar se mantemos os set's ou nao.
-    
     /**
      * @param aProdutos the produtos to set
      *//*
-    public void setProdutos(List<Produto> aProdutos) {
-        produtos = aProdutos;
-    }
+     public void setProdutos(List<Produto> aProdutos) {
+     produtos = aProdutos;
+     }
 
-    /**
+     /**
      * @param aClientes the clientes to set
      *//*
-    public void setClientes(List<Cliente> aClientes) {
-        clientes = aClientes;
-    }
+     public void setClientes(List<Cliente> aClientes) {
+     clientes = aClientes;
+     }
 
-    /**
+     /**
      * @param aEncomendas the encomendas to set
      *//*
-    public void setEncomendas(List<Encomenda> aEncomendas) {
-        encomendas = aEncomendas;
-    }*/
-    
+     public void setEncomendas(List<Encomenda> aEncomendas) {
+     encomendas = aEncomendas;
+     }*/
+
+
+
     /**
      * Retorna uma string com lista de produtos
-     * 
+     *
      * @return String lista de descricões dos produtos
-    **/    
-    private String getList(List l){
+     *
+     */
+    private String getList(List l) {
         StringBuilder concat = null;
         Iterator it = l.iterator();
         Object obj;
-        String str = ""; 
-        try{
-        while(it.hasNext()){
-            obj = it.next();
-            concat.append(obj.toString());
-        }
-        concat.append("--------------------");
-        str = concat.substring(0);
-        }catch(NullPointerException e){
-            str="";
+        String str = "";
+        try {
+            while (it.hasNext()) {
+                obj = it.next();
+                concat.append(obj.toString());
+            }
+            concat.append("--------------------");
+            str = concat.substring(0);
+        } catch (NullPointerException e) {
+            str = "";
         }
         return str;
     }
-    
-    
-    public boolean registaProducto(String desig, int stock, float prc){
+
+    public boolean registaProducto(String desig, int stock, float prc) {
         boolean ret = true;
         Produto p = criaObjProd(desig, stock, prc);
-        p.setId_Prod(bd.getNextID(1)+1);
-        if(!bd.registaProduto(p)){
-            ret= false;
-        }else{
+        p.setId_Prod(bd.getNextID(1) + 1);
+        if (!bd.registaProduto(p)) {
+            ret = false;
+        } else {
             produtos.add(p);
         }
         return ret;
     }
-    
-    
-    private Produto criaObjProd(String desig, int stock, float prc){
+
+    private Produto criaObjProd(String desig, int stock, float prc) {
         Produto p = new Produto(desig, stock, prc);
         return p;
     }
-    
-    public boolean registaCliente(String nome, String morada, int telf, String mail){
+
+    public boolean registaCliente(String nome, String morada, int telf, String mail) {
         boolean ret = true;
         Cliente c = criaObjClt(nome, morada, telf, mail);
-        c.setId_Cli(bd.getNextID(0)+1);
-        if(!bd.registaCliente(c)){
-            ret= false;
-        }else{
+        c.setId_Cli(bd.getNextID(0) + 1);
+        if (!bd.registaCliente(c)) {
+            ret = false;
+        } else {
             clientes.add(c);
         }
         return ret;
     }
-    
-    private Cliente criaObjClt(String nome, String morada, int telf, String mail){
+
+    private Cliente criaObjClt(String nome, String morada, int telf, String mail) {
         Cliente c = new Cliente(nome, morada, telf, mail);
         return c;
     }
