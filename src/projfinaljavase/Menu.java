@@ -23,8 +23,6 @@ public class Menu {
         gs = new GesStock();
         do {
 
-            
-           
             System.out.println("\n");
             System.out.println("Menu\n");
             System.out.println("1. Registo de Produto");
@@ -32,10 +30,9 @@ public class Menu {
             System.out.println("3. Consultas");
             System.out.println("4. Vendas de Produtos");
             System.out.println("5. Sair do Programa");
-            
+
             escolha = Integer.parseInt(in.next());
-            
-            
+
             switch (escolha) {
 
                 case 1:
@@ -43,22 +40,21 @@ public class Menu {
                     ResgProd();
                     break;
                 case 2:
-                   
+
                     ResgCli();
                     break;
 
                 case 3:
-                    
-//                    Consul();
+
+                    Consulta();
                     break;
 
                 case 4:
-                    
-                    
+
                     break;
 
                 case 5:
-                    
+
                     System.out.println("Até à próxima");
                     System.exit(0);
 
@@ -122,17 +118,32 @@ public class Menu {
         }
 
     }
-    
-//    private void Consul(){
-//        
-//        do do {                
-//                
-//            } while (true);
-//        
-//        
-//        
-//        
-//        
-//    }
+
+    private void Consulta() {
+        
+        System.out.println("\n");
+            System.out.println("Menu\n");
+            System.out.println("1. ");
+            System.out.println("2. ");
+            System.out.println("3. ");
+            System.out.println("4. ");
+            System.out.println("5. Sair do Programa");
+        
+        escolha = Integer.parseInt(in.next());
+
+        do {
+
+            switch (escolha) {
+
+                case 1:
+                    
+                    //criar metodo para menu!!!
+                    break;
+
+            }
+
+        } while (true);
+
+    }
 
 }
