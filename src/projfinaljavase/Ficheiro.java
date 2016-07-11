@@ -12,11 +12,14 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
+
 /**
  *
  * @author vitorfilipe
  */
 public class Ficheiro {
+    
+    
 
     public void ficheiro() throws FileNotFoundException, IOException {
 
@@ -26,8 +29,8 @@ public class Ficheiro {
 
         try {
 
-            inputStream = new BufferedReader(new FileReader("xanadu.txt"));
-            outputStream = new BufferedWriter(new FileWriter("output.txt"));
+            inputStream = new BufferedReader(new FileReader("geststok_input.txt"));
+            outputStream = new BufferedWriter(new FileWriter("geststok_output.txt"));
             while ((c = inputStream.readLine()) != null) {
                 outputStream.write(c);
 
