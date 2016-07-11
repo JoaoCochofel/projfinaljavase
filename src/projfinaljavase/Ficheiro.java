@@ -7,8 +7,10 @@ package projfinaljavase;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
 
 /**
  *
@@ -16,34 +18,33 @@ import java.io.FileWriter;
  */
 public class Ficheiro {
 
-    BufferedReader inputStream = null;
-    BufferedWriter outputStream = null;
-    String c;
+    public void ficheiro() throws FileNotFoundException, IOException {
 
-    
+        BufferedReader inputStream = null;
+        BufferedWriter outputStream = null;
+        String c;
+
         try {
 
-inputStream = new BufferedReader(new FileReader("xanadu.txt"));
-        outputStream = new BufferedWriter(new FileWriter("output.txt"));
-        while ((c = inputStream.readLine()) != null) {
-            outputStream.write(c);
+            inputStream = new BufferedReader(new FileReader("xanadu.txt"));
+            outputStream = new BufferedWriter(new FileWriter("output.txt"));
+            while ((c = inputStream.readLine()) != null) {
+                outputStream.write(c);
 
+            }
+
+        } finally {
+
+            if (inputStream != null) {
+
+                inputStream.close();
+            }
+
+            if (outputStream != null) {
+
+                outputStream.close();
+            }
         }
 
     }
-
-    
-        finally {
-
-if (inputStream != null) {
-
-            inputStream.close();
-        }
-
-        if (outputStream != null) {
-
-            outputStream.close();
-        }
-    }
-
 }
