@@ -5,12 +5,13 @@
  */
 package projfinaljavase;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.List;
 
 
 /**
@@ -20,34 +21,20 @@ import java.io.IOException;
 public class Ficheiro {
     
     
+//guarda em ficheiro binário a lista
+    public void ficheiroBinGuardar(List bin) throws FileNotFoundException, IOException {
 
-    public void ficheiro() throws FileNotFoundException, IOException {
-
-        BufferedReader inputStream = null;
-        BufferedWriter outputStream = null;
-        String c;
-
-        try {
-
-            inputStream = new BufferedReader(new FileReader("geststok_input.txt"));
-            outputStream = new BufferedWriter(new FileWriter("geststok_output.txt"));
-            while ((c = inputStream.readLine()) != null) {
-                outputStream.write(c);
-
-            }
-
-        } finally {
-
-            if (inputStream != null) {
-
-                inputStream.close();
-            }
-
-            if (outputStream != null) {
-
-                outputStream.close();
-            }
-        }
-
+        FileOutputStream fout= new FileOutputStream("geststock_output.bin");
+        ObjectOutputStream oos= new ObjectOutputStream(fout);
+        
+        oos.writeObject(bin);
     }
+    
+    public void ficheiroBinLer(List bin) throws FileNotFoundException, IOException, ClassNotFoundException {
+        FileInputStream fin = new FileInputStream("geststock_output.bin");
+        ObjectInputStream ois = new ObjectInputStream(fin);
+        bin= (List) ois.readObject();
+        
+    }
+    
 }

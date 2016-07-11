@@ -20,7 +20,7 @@ public class Main {
         m.menu();
         
         
-//        Cliente cli = new Cliente;
+        Cliente cli = new Cliente(null, null, 912324435, null);
        
         
         
