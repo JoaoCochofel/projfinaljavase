@@ -183,5 +183,31 @@ public class InterfaceBD {
         closeConection();
         return ret;
     }
+    
+    public boolean registaEncomenda(Encomenda e){
+        boolean ret = true;
+        String query = "";
+        if(getConnection()){
+            query = "select * from encomenda where encomenda.id = "+ e.getId_Enc();
+            ResultSet rs = queryBD(query);
+            try{
+                if(!rs.next()){
+                    query = "insert into encomenda (id, id_cliente, id_produto, data, quantidade) values (" + e.getId_Enc()+","+ e.getCli().getId_Cli() +","+ e.getProd().getId_Prod()+","+e.getData()+","+e.getQtd()+")";
+                    if(!insert(query)){
+                        ret = false;
+                    }
+                }else{
+                    ret = false;
+                }
+            }catch(SQLException ex){
+                Logger.getLogger(InterfaceBD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }else{
+            ret = false;
+        }
+        closeStatement();
+        closeConection();
+        return ret;
+    }
 
 }
