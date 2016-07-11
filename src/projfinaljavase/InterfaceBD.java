@@ -140,7 +140,7 @@ public class InterfaceBD {
             ResultSet rs = queryBD(query);
             try {
                 if (!rs.next()) {
-                    query = "insert into produto (id, desig, stock, prc) values (" + p.getId_Prod() + "," + p.getDesig() + "," + p.getStock() + "," + p.getPrc() + ")";
+                    query = "insert into produto (id, desig, stock, prc) values (" + p.getId_Prod() + ",'" + p.getDesig() + "'," + p.getStock() + "," + p.getPrc() + ")";
                     if (!insert(query)) {
                         ret = false;
                     }
@@ -166,7 +166,7 @@ public class InterfaceBD {
             ResultSet rs = queryBD(query);
             try {
                 if (!rs.next()) {
-                    query = "insert into cliente (id, nome, morada, telf, mail) values (" + c.getId_Cli() + "," + c.getNome() + "," + c.getMorada() + "," + c.getTelf() + "," + c.getMail() + ")";
+                    query = "insert into cliente (id, nome, morada, telf, mail) values (" + c.getId_Cli() + ",'" + c.getNome() + "','" + c.getMorada() + "'," + c.getTelf() + ",'" + c.getMail() + "')";
                     if (!insert(query)) {
                         ret = false;
                     }
