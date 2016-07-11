@@ -118,9 +118,14 @@ public class Menu {
 
     }
 //______SUB-MENU CONSULTA_____OPÇÃO 3 DO MENU PRINCIPAL_____________________//________________________________________
+
     private void Consulta() {
 
-        System.out.println("\n");
+        
+
+        do {
+            
+            System.out.println("\n");
         System.out.println("Menu\n");
         System.out.println("1. Listar Stock de Produtos");
         System.out.println("2. Listar Clientes");
@@ -130,8 +135,6 @@ public class Menu {
         System.out.println("6. Menu Anterior");
 
         escolha = Integer.parseInt(in.next());
-
-        do {
 
             switch (escolha) {
 
@@ -158,8 +161,7 @@ public class Menu {
                     break;
                 case 6:
 
-                    menu();
-                    break;
+                    return;
 
             }
 
@@ -176,60 +178,63 @@ public class Menu {
         gs.getEncomendasCliente(i);
 
     }
-    
-    //_______SUB-MENU PROCURA PRODUTO_______OPÇÃO 4 DO SUB-MENU CONSULTA______________//________________________________________
 
+    //_______SUB-MENU PROCURA PRODUTO_______OPÇÃO 4 DO SUB-MENU CONSULTA______________//________________________________________
     public void ProcuraProdutos() {
 
-        System.out.println("\n");
+        
+
+        do {
+            
+            System.out.println("\n");
         System.out.println("Menu\n");
         System.out.println("1. Procura por Preco");
         System.out.println("2. Procura por ID");
         System.out.println("3. Procura por Designacao");
         System.out.println("4. Procura por Stock a Zero");
         System.out.println("5. Menu Anterior");
+         escolha = Integer.parseInt(in.next());
 
-        switch (escolha) {
+            switch (escolha) {
 
-            case 1:
+                case 1:
 
-                System.out.println("Insira o preco que pretende:");
-                float i;
-                i = Float.parseFloat(in.next());
-                System.out.println(gs.getProdutoPreco(i));
-                break;
+                    System.out.println("Insira o preco que pretende:");
+                    float i;
+                    i = Float.parseFloat(in.next());
+                    System.out.println(gs.getProdutoPreco(i));
+                    break;
 
-            case 2:
-                System.out.println(gs.getProdutos());
-                System.out.println("Insira o ID do produto:");
-                int q;
-                q = Integer.parseInt(in.next());
-                System.out.println(gs.getProdutoPreco(q));
-                break;
+                case 2:
+                    System.out.println(gs.getProdutos());
+                    System.out.println("Insira o ID do produto:");
+                    int q;
+                    q = Integer.parseInt(in.next());
+                    System.out.println(gs.getProdutoPreco(q));
+                    break;
 
-            case 3:
-                
-                System.out.println("Insira o nome do produto");
-                String n;
-                n= in.next();
-                System.out.println(gs.getProdutoNome(n));
-                break;
-                
-            case 4: 
-                
-                gs.getProdutosStockZero();
-                
-                break;
-                
-            case 5: 
-                
-                menu();
-                
-                break;
-                
+                case 3:
 
+                    System.out.println("Insira o nome do produto");
+                    String n;
+                    n = in.next();
+                    System.out.println(gs.getProdutoNome(n));
+                    break;
+
+                case 4:
+
+                    gs.getProdutosStockZero();
+
+                    break;
+
+                case 5:
+
+                    return;
+
+                }
+        } while (true);
+         
+        
         }
-
-    }
 
 }
