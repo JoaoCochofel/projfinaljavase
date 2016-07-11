@@ -43,8 +43,19 @@ public class GesStock {
     }
     
     public String getEncomendasCliente(int id_cliente){
+        Iterator it = encomendas.iterator();
+        List subEnc = new ArrayList();
+        Encomenda e;
+        for (Encomenda encomenda : encomendas) {
+            if(it.hasNext()){
+                e = (Encomenda)it.next();
+                if(e.getCli().getId_Cli() == id_cliente){
+                    subEnc.add(e);
+                }
+            }
+        }
         
-        return "";
+        return getList(subEnc);
     }
     
     /**
