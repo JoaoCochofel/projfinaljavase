@@ -103,8 +103,9 @@ public class GesStock {
     
     public boolean registaProducto(String desig, int stock, float prc){
         Produto p = criaObjProd(desig, stock, prc);
-        p.setId_Prod(bd.getNextID(1));
+        p.setId_Prod(bd.getNextID(1)+1);
         produtos.add(p);
+        //gravar para a BD
         return true; //meh
     }
     
