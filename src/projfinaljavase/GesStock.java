@@ -22,6 +22,10 @@ public class GesStock {
     private static List<Encomenda> encomendas;
     private static InterfaceBD bd;
 
+    /**
+     * contrutor da classe GesStock
+     */
+    
     public GesStock() {
         produtos = new ArrayList<Produto>();
         clientes = new ArrayList<Cliente>();
@@ -30,18 +34,24 @@ public class GesStock {
     }
 
     /**
-     * @return the produtos
+     * @return todos os produtos registados no sistema (detalhe completo)
      */
     public String getProdutos() {
         return getList(produtos);
     }
 
     /**
-     * @return the encomendas
+     * @return Todas as encomendas registadas no sistema (detalhe completo)
      */
     public String getEncomendas() {
         return getList(encomendas);
     }
+    
+    /**
+     * retorna o historico de encomendas de um determinado cliente
+     * @param id_cliente - id do cliente
+     * @return string com a lista de encomendas do cliente pretendido
+     */
     
     public String getEncomendasCliente(int id_cliente){
         Iterator it = encomendas.iterator();
@@ -57,59 +67,71 @@ public class GesStock {
         return getList(subEnc);
     }
     
+    /**
+     * retorna os produtos com um dado preço
+     * @param f - preço dos produtos listados
+     * @return string com os produtos encontrados
+     */
+    
     public String getProdutoPreco(float f){
-        Iterator it = produtos.iterator();
         List subL = new ArrayList();
-        Produto p;
         for (Produto prod : produtos) {
-            p = (Produto) it.next();
-            if(p.getPrc() == f){
-                subL.add(p);
+            if(prod.getPrc() == f){
+                subL.add(prod);
             }
         }
         return getList(subL);
     }
+    
+    /**
+     * retorna o produto com um determinado ID
+     * @param id - ID do produto desejado
+     * @return produto com determinado ID
+     */
     
     public String getProdutoID(int id){
-        Iterator it = produtos.iterator();
         List subL = new ArrayList();
-        Produto p;
         for (Produto prod : produtos) {
-            p = (Produto) it.next();
-            if(p.getId_Prod()== id){
-                subL.add(p);
+            if(prod.getId_Prod()== id){
+                subL.add(prod);
             }
         }
         return getList(subL);
     }
+    
+    /**
+     * retorna os produtos que contem determinada string no seu nome
+     * 
+     * @param nome - string que se deseja procurar na designação dos produtos
+     * @return lista de produtos com determinada string no nome
+     */
     
     public String getProdutoNome(String nome){
-        Iterator it = produtos.iterator();
         List subL = new ArrayList();
-        Produto p;
         for (Produto prod : produtos) {
-            p = (Produto) it.next();
-            if(p.getDesig().compareToIgnoreCase(nome)==0){
-                subL.add(p);
+            if(prod.getDesig().contains(nome)){
+                subL.add(prod);
             }
         }
         return getList(subL);
     }
     
+    /**
+     * este metodo retorna os produtos que teem stock 0 (zero)
+     * @return produtos com stock 0
+     */
+    
     public String getProdutosStockZero(){
-        Iterator it = produtos.iterator();
         List subL = new ArrayList();
-        Produto p;
         for (Produto prod : produtos) {
-            p = (Produto) it.next();
-            if(p.getStock()== 0){
-                subL.add(p);
+            if(prod.getStock()== 0){
+                subL.add(prod);
             }
         }
         return getList(subL);
     }
     /**
-     * @return the clientes
+     * @return lista detalhada dos clientes existentes
      */
     public String getClientes() {
         return getList(clientes);
@@ -163,6 +185,15 @@ public class GesStock {
         return str;
     }
 
+    /**
+     * este metodo regista um novo produto no sistema
+     * 
+     * @param desig - designação do produto
+     * @param stock - stock inicial do produto
+     * @param prc - preco do produto
+     * @return booleano - caso verdadeiro produto foi registado com sucesso, caso falso ver log de excepções para mais detalhe
+     */
+    
     public boolean registaProducto(String desig, int stock, float prc) {
         boolean ret = true;
         Produto p = criaObjProd(desig, stock, prc);
@@ -180,6 +211,16 @@ public class GesStock {
         return p;
     }
 
+    
+    /**
+     * este metodo regista um novo cliente no sistema
+     * 
+     * @param nome - nome do cliente
+     * @param morada - morada do cliente
+     * @param telf - numero de telefone de contacto
+     * @param mail - email de contacto
+     * @return booleano - caso verdadeiro cliente foi registado com sucesso, caso falso ver log de excepções para mais detalhe
+     */
     public boolean registaCliente(String nome, String morada, int telf, String mail) {
         boolean ret = true;
         Cliente c = criaObjClt(nome, morada, telf, mail);
@@ -197,6 +238,11 @@ public class GesStock {
         return c;
     }
     
+    
+    /**
+     * Este metodo retorna uma lista concatenada numa string de ID : NOME dos clientes existentes
+     * @return String ID : NOME dos clientes existentes
+     */
     public String getIdNomeClientes(){
         StringBuilder concat = null;
         String str ="";
@@ -210,6 +256,11 @@ public class GesStock {
         str = concat.substring(0);
         return str;
     }
+    
+    /**
+     * Este metodo retorna uma lista concatenada numa string de ID : DESCRICAO dos produtos existentes
+     * @return String ID : DESCRICAO dos produtos existentes
+     */
     
     public String getIdDesigProduto(){
         StringBuilder concat = null;
@@ -225,11 +276,21 @@ public class GesStock {
         return str;
     }
     
+    
+    /**
+     * Este metodo recebe o Id do cliente que quer comprar, o id do produto e a quantidade e retorna o valor total da encomenda
+     * 
+     * @param idCliente - ID do cliente comprador
+     * @param idProduto - ID do produto pretendido
+     * @param qtd - quantidade pretendida
+     * @return - valor total da encomenda
+     */
     public float registaEncomenda(int idCliente, int idProduto, int qtd){
         Cliente c = null;
         Produto p = null;
         Encomenda e = null;
         DateFormat data;
+        float ret;
         
         Iterator clIterator = clientes.iterator(), prIterator = produtos.iterator();
         
@@ -247,6 +308,14 @@ public class GesStock {
         }
         e = new Encomenda(c, p, new Date(), qtd);
         
-        return p.getPrc()*qtd;
+        e.setId_Enc(bd.getNextID(2)+1);
+        if(!bd.registaEncomenda(e)){
+            ret = -1;
+        }else{
+            encomendas.add(e);
+            ret = p.getPrc()*qtd;
+        }
+        
+        return ret;
     }
 }
