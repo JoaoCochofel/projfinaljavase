@@ -19,6 +19,14 @@ public class Encomenda {
     private Date data;
     private int qtd;
 
+    public Encomenda(int id_Cli, int id_Prod, Date data, int qtd) {
+        
+        this.id_Cli = id_Cli;
+        this.id_Prod = id_Prod;
+        this.data = data;
+        this.qtd = qtd;
+    }
+
     public int getId_Enc() {
         return id_Enc;
     }

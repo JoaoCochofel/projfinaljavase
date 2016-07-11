@@ -17,6 +17,13 @@ public class Cliente {
     private int telf;
     private String mail;
 
+    public Cliente(String nome, String morada, int telf, String mail) {
+        this.nome = nome;
+        this.morada = morada;
+        this.telf = telf;
+        this.mail = mail;
+    }
+    
     /**
      * @return the id_Cli
      */
