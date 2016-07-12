@@ -15,6 +15,12 @@ import java.util.List;
  *
  * @author João
  */
+
+
+/**
+ * TODO - corrigir as listagens de produtos que nao aparecem
+ * carregar base de dados para memoria no arranque do programa!
+ */
 public class GesStock {
 
     private static List<Produto> produtos;
@@ -164,16 +170,16 @@ public class GesStock {
      *
      */
     private String getList(List l) {
-        StringBuilder concat = null;
+        StringBuilder concat = new StringBuilder();
         String str;
         try {
             for (Object obj : l) {
                 concat.append(obj.toString());
             }
-            concat.append("--------------------");
+            concat.append("\n--------------------");
             str = concat.substring(0);
         } catch (NullPointerException e) {
-            str = "";
+            str = "null pointer exception";
         }
         return str;
     }
@@ -237,8 +243,8 @@ public class GesStock {
      * @return String ID : NOME dos clientes existentes
      */
     public String getIdNomeClientes(){
-        StringBuilder concat = null;
-        String str ="";
+    StringBuilder concat = new StringBuilder();
+        String str;
         
         for (Cliente cliente : clientes) {
             concat.append(cliente.getId_Cli());
@@ -256,7 +262,7 @@ public class GesStock {
      */
     
     public String getIdDesigProduto(){
-        StringBuilder concat = null;
+        StringBuilder concat = new StringBuilder();
         String str ="";
         
         for (Produto produto : produtos) {

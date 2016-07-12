@@ -30,7 +30,7 @@ public class Menu {
             System.out.println("4. Vendas de Produtos");
             System.out.println("5. Sair do Programa");
 
-            escolha = Integer.parseInt(in.next());
+            escolha = Integer.parseInt(in.nextLine());
 
             switch (escolha) {
 
@@ -72,11 +72,11 @@ public class Menu {
         float prc;
 
         System.out.println("Insira o nome de um Produto:");
-        desig = in.next();
+        desig = in.nextLine();
         System.out.println("Insira o Stock do Produto:");
-        stock = Integer.parseInt(in.next());
+        stock = Integer.parseInt(in.nextLine());
         System.out.println("Insira o PVP:");
-        prc = Float.parseFloat(in.next());
+        prc = Float.parseFloat(in.nextLine());
 
         if (gs.registaProducto(desig, stock, prc)) {
 
@@ -98,13 +98,13 @@ public class Menu {
         String mail;
 
         System.out.println("Insira o nome do Cliente:");
-        nome = in.next();
+        nome = in.nextLine();
         System.out.println("Insira uma Morada:");
-        morada = in.next();
+        morada = in.nextLine();
         System.out.println("Insira um E-Mail:");
-        mail = in.next();
+        mail = in.nextLine();
         System.out.println("Insira um contacto telefónico");
-        telf = Integer.parseInt(in.next());
+        telf = Integer.parseInt(in.nextLine());
 
         if (gs.registaCliente(nome, morada, telf, mail)) {
 
@@ -134,16 +134,16 @@ public class Menu {
         System.out.println("5. Guarda dados para ficheiro");
         System.out.println("6. Menu Anterior");
 
-        escolha = Integer.parseInt(in.next());
+        escolha = Integer.parseInt(in.nextLine());
 
             switch (escolha) {
 
                 case 1:
-                    gs.getProdutos();
+                    System.out.println(gs.getProdutos());
 
                     break;
                 case 2:
-                    gs.getClientes();
+                    System.out.println(gs.getClientes());
 
                     break;
                 case 3:
@@ -174,7 +174,7 @@ public class Menu {
         System.out.println(gs.getIdNomeClientes());//primeiro lista os clientes para poder escolher
         System.out.println("Insira o ID do Cliente que pretende:");
         int i;
-        i = Integer.parseInt(in.next());
+        i = Integer.parseInt(in.nextLine());
         gs.getEncomendasCliente(i);
 
     }
@@ -193,7 +193,7 @@ public class Menu {
         System.out.println("3. Procura por Designacao");
         System.out.println("4. Procura por Stock a Zero");
         System.out.println("5. Menu Anterior");
-         escolha = Integer.parseInt(in.next());
+         escolha = Integer.parseInt(in.nextLine());
 
             switch (escolha) {
 
@@ -201,29 +201,29 @@ public class Menu {
 
                     System.out.println("Insira o preco que pretende:");
                     float i;
-                    i = Float.parseFloat(in.next());
+                    i = Float.parseFloat(in.nextLine());
                     System.out.println(gs.getProdutoPreco(i));
                     break;
 
                 case 2:
-                    System.out.println(gs.getProdutos());
+                    System.out.println(gs.getIdDesigProduto());
                     System.out.println("Insira o ID do produto:");
                     int q;
-                    q = Integer.parseInt(in.next());
-                    System.out.println(gs.getProdutoPreco(q));
+                    q = Integer.parseInt(in.nextLine());
+                    System.out.println(gs.getProdutoID(q));
                     break;
 
                 case 3:
 
                     System.out.println("Insira o nome do produto");
                     String n;
-                    n = in.next();
+                    n = in.nextLine();
                     System.out.println(gs.getProdutoNome(n));
                     break;
 
                 case 4:
 
-                    gs.getProdutosStockZero();
+                    System.out.println(gs.getProdutosStockZero());
 
                     break;
 
