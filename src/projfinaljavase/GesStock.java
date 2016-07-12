@@ -415,4 +415,15 @@ public class GesStock {
         }
         return ret;
     }
+    
+    
+    public void guardaFicheiroBin(){
+        Ficheiro fich = new Ficheiro();
+        fich.ficheiroBinGuardar(clientes, produtos, encomendas);
+    }
+    
+    public void lerFicheiroBin(){
+        Ficheiro fich = new Ficheiro();
+        fich.ficheiroBinLer(clientes, produtos, encomendas);
+    }
 }
