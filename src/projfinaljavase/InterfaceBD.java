@@ -266,4 +266,17 @@ public class InterfaceBD {
             Logger.getLogger(InterfaceBD.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public boolean eliminaProdId(int id){
+        boolean ret = true;
+        if(getConnection()){
+            String query = "delete from produto where id = "+id;
+            if(!insert(query)){
+                ret = false;
+            }
+        }
+        closeStatement();
+        closeConection();
+        return ret;
+    }
 }

@@ -427,4 +427,21 @@ public class GesStock implements Serializable{
         Ficheiro fich = new Ficheiro();
         fich.ficheiroBinLer(clientes, produtos, encomendas);
     }
+    
+    public boolean eliminaProdPorId(int id){
+        boolean ret = true;
+        if(bd.eliminaProdId(id)){
+            Produto p;
+            for (int i = 0 ; i< produtos.size(); i++) {
+                if(produtos.get(i).getId_Prod() == id){
+                    p = produtos.get(i);
+                    produtos.remove(p);
+                }
+            }
+        }else{
+            ret = false;
+        }
+        
+        return ret;
+    }
 }

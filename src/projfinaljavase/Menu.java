@@ -205,7 +205,8 @@ public class Menu {
             System.out.println("2. Procura por ID");
             System.out.println("3. Procura por Designacao");
             System.out.println("4. Procura por Stock a Zero");
-            System.out.println("5. Menu Anterior");
+            System.out.println("5. Elimina produto por ID");
+            System.out.println("6. Menu Anterior");
             
             boolean excep = false;
             do{
@@ -248,10 +249,18 @@ public class Menu {
 
                     break;
 
-                case 5:
+                case 6:
 
                     return;
 
+                case 5:
+                    System.out.println(gs.getIdDesigProduto());
+                    System.out.println("Insira o ID do produto que deseja eliminar: ");
+                    int id;
+                    id = Integer.parseInt(in.nextLine());
+                    if(!gs.eliminaProdPorId(id)){
+                        System.out.println("erro ao eliminar produto, por favor tente novamente");
+                    }
             }
         } while (true);
 
