@@ -4,8 +4,6 @@
  * and open the template in the editor.
  */
 package projfinaljavase;
-
-import java.io.IOException;
 /**
  *
  * @author João
