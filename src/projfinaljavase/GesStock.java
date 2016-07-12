@@ -59,15 +59,38 @@ public class GesStock {
         try {
             while(rs.next()){
                 switch(idL){
-                    case 0:  ; break;
-                    case 1:  ; break;
-                    case 2:  ; break;
+                    case 0: 
+                        clientes.add(criaObjClt(rs.getInt(1), rs.getString(2),rs.getString(5) ,rs.getInt(3) ,rs.getString(4))); break;
+                    case 1:  
+                        produtos.add(criaObjProd(rs.getInt(1), rs.getString(3), rs.getInt(2), rs.getInt(4))); break;
+                    case 2:  
+                        encomendas.add(criaObjEncomenda(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getDate(4), rs.getInt(5))); break;
                 }
             }
         } catch (SQLException ex) {
             Logger.getLogger(GesStock.class.getName()).log(Level.SEVERE, null, ex);
         }
         return ret;
+    }
+    
+    
+    private Encomenda criaObjEncomenda(int id, int cli, int prod, Date data, int qtd ){
+        Produto p = null;
+        Cliente c = null;
+        for (Produto produto : produtos) {
+            if(produto.getId_Prod() == prod){
+                p = produto;
+                break;
+            }
+        }
+        for (Cliente cliente : clientes) {
+            if(cliente.getId_Cli()== cli){
+                c = cliente;
+                break;
+            }
+        }
+        Encomenda e = new Encomenda(id, c, p, data, qtd);
+        return e;
     }
 
     /**
@@ -240,6 +263,11 @@ public class GesStock {
         Produto p = new Produto(desig, stock, prc);
         return p;
     }
+    
+    private Produto criaObjProd(int id, String desig, int stock, float prc) {
+        Produto p = new Produto(id, desig, stock, prc);
+        return p;
+    }
 
     
     /**
@@ -265,6 +293,11 @@ public class GesStock {
 
     private Cliente criaObjClt(String nome, String morada, int telf, String mail) {
         Cliente c = new Cliente(nome, morada, telf, mail);
+        return c;
+    }
+    
+    private Cliente criaObjClt(int id, String nome, String morada, int telf, String mail) {
+        Cliente c = new Cliente(id, nome, morada, telf, mail);
         return c;
     }
     
