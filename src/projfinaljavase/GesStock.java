@@ -5,11 +5,15 @@
  */
 package projfinaljavase;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -37,6 +41,33 @@ public class GesStock {
         clientes = new ArrayList<Cliente>();
         encomendas = new ArrayList<Encomenda>();
         bd = new InterfaceBD();
+        boot();
+    }
+    
+    
+    private void boot(){
+        ResultSet[] rs = bd.boot();
+        clientes = populateList(rs[0], 0);
+        produtos = populateList(rs[1], 1);
+        encomendas = populateList(rs[2], 2);
+        
+        
+    }
+    
+    private List populateList(ResultSet rs, int idL){
+        List ret = new ArrayList();
+        try {
+            while(rs.next()){
+                switch(idL){
+                    case 0:  ; break;
+                    case 1:  ; break;
+                    case 2:  ; break;
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(GesStock.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return ret;
     }
 
     /**

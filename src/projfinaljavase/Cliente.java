@@ -23,6 +23,14 @@ public class Cliente {
         this.telf = telf;
         this.mail = mail;
     }
+    
+    public Cliente(int id, String nome, String morada, int telf, String mail){
+        this.id_Cli = id;
+        this.nome = nome;
+        this.morada = morada;
+        this.telf = telf;
+        this.mail = mail;
+    }
 
     /**
      * @return the id_Cli

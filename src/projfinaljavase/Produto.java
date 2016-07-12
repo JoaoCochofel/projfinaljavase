@@ -21,6 +21,13 @@ public class Produto {
         this.stock = stock;
         this.prc = prc;
     }
+    
+    public Produto(int id , String desig, int stock, float prc){
+        this.id_Prod = id;
+        this.desig = desig;
+        this.stock = stock;
+        this.prc = prc;
+    }
 
     public int getId_Prod() {
         return id_Prod;

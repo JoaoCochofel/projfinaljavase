@@ -180,7 +180,7 @@ public class Menu {
 
     //_______SUB-MENU PROCURA PRODUTO_______OPÇÃO 4 DO SUB-MENU CONSULTA______________//________________________________________
     public void ProcuraProdutos() {
-
+        
         do {
 
             System.out.println("\n");
@@ -190,10 +190,17 @@ public class Menu {
             System.out.println("3. Procura por Designacao");
             System.out.println("4. Procura por Stock a Zero");
             System.out.println("5. Menu Anterior");
-            escolha = Integer.parseInt(in.next());
-
+            boolean cenas = false;
+            do{
+                try{
+                    escolha = Integer.parseInt(in.nextLine());
+                    cenas =true;
+                }catch(NumberFormatException ex){
+                    System.out.println("valor g");
+                }
+            }while(!cenas);
+            
             switch (escolha) {
-
                 case 1:
 
                     System.out.println("Insira o preco que pretende:");

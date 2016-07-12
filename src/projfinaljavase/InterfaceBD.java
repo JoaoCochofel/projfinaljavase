@@ -232,7 +232,23 @@ public class InterfaceBD {
                 ret = false;
             }
         }
+        closeStatement();
+        closeConection();
         return ret;
     }
-
+    
+    public ResultSet[] boot(){
+        ResultSet[] rs = null;
+        String query = "select * from cliente";
+        if(getConnection()){
+            rs[0] = queryBD(query);
+            query = "select * from produto";
+            rs[1] = queryBD(query);
+            query = "select * from encomenda";
+            rs[2] = queryBD(query);
+        }
+        closeStatement();
+        closeConection();
+        return rs;
+    }
 }

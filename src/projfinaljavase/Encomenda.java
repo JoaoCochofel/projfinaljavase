@@ -26,6 +26,14 @@ public class Encomenda {
         this.qtd = qtd;
     }
 
+    public Encomenda(int id, Cliente cli, Produto prod, Date data, int qtd) {
+        this.id_Enc = id;
+        this.cli = cli;
+        this.prod = prod;
+        this.data = data;
+        this.qtd = qtd;
+    }
+
     public int getId_Enc() {
         return id_Enc;
     }
