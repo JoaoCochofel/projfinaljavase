@@ -365,6 +365,16 @@ public class GesStock implements Serializable{
         }
         return ret;
     }
+    
+    public boolean testNumTel(int num){
+        boolean ret = true;
+        String str = ""+num;
+        if(!str.matches("(91|92|93|96)\\d{7}|(21|22|23|24|25)\\d{7}")){
+            ret = false;
+        }
+        return ret;
+    }
+    
 
     /**
      * Este metodo recebe o Id do cliente que quer comprar, o id do produto e a
@@ -376,6 +386,9 @@ public class GesStock implements Serializable{
      * @return - valor total da encomenda
      */
     public float registaEncomenda(int idCliente, int idProduto, int qtd) {
+        if(idCliente == -1 || idProduto == -1 || qtd == -1){
+            return -1;
+        }
         Cliente c = null;
         Produto p = null;
         Encomenda e = null;
@@ -399,7 +412,7 @@ public class GesStock implements Serializable{
         try {
             e = new Encomenda(c, p, new Date(), qtd);
         } catch (NullPointerException ex) {
-            return -1;
+            ret = -1;
         }
 
         e.setId_Enc(bd.getNextID(2) + 1);
