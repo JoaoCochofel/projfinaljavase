@@ -73,6 +73,6 @@ public class Produto {
 
     @Override
     public String toString() {
-        return "--------------------\nID:\t" + id_Prod + "\nDesignacao:\t" + desig + "\nPreco:\t" + prc + "\nStock:\t" + stock;
+        return "\n--------------------\nID:\t" + id_Prod + "\nDesignacao:\t" + desig + "\nPreco:\t" + prc + "\nStock:\t" + stock+"\n";
     }
 }

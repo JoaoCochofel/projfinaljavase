@@ -238,6 +238,7 @@ public class InterfaceBD {
     }
     
     public ResultSet[] boot(){
+        
         ResultSet[] rs = new ResultSet[4];
         String query = "select * from cliente";
         if(getConnection()){
@@ -246,9 +247,23 @@ public class InterfaceBD {
             rs[1] = queryBD(query);
             query = "select * from encomenda";
             rs[2] = queryBD(query);
+            try {
+                con.setAutoCommit(false);
+            } catch (SQLException ex) {
+                Logger.getLogger(InterfaceBD.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
-        closeStatement();
-        closeConection();
         return rs;
+    }
+    
+    public void reSetAutoCommit(){
+        try {
+            con.commit();
+            con.setAutoCommit(true);
+            closeStatement();
+            closeConection();
+        } catch (SQLException ex) {
+            Logger.getLogger(InterfaceBD.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

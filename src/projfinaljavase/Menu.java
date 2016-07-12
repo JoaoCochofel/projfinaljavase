@@ -172,7 +172,7 @@ public class Menu {
                     break;
                 case 5:
 
-                    //criar metodo para menu!!!3
+                    gs.guardaFicheiroBin();
                     break;
                 case 6:
 

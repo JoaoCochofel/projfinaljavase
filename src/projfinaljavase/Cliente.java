@@ -104,6 +104,6 @@ public class Cliente {
 
     @Override
     public String toString() {
-        return "--------------------\nID:\t" + id_Cli + "\nNome:\t" + nome + "\nMorada:\t" + morada + "\nTelefone:\t" + telf + "\ne-mail:\t" + mail;
+        return "\n--------------------\nID:\t" + id_Cli + "\nNome:\t" + nome + "\nMorada:\t" + morada + "\nTelefone:\t" + telf + "\ne-mail:\t" + mail+"\n";
     }
 }
