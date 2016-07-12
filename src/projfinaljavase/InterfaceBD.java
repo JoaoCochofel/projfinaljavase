@@ -238,7 +238,7 @@ public class InterfaceBD {
     }
     
     public ResultSet[] boot(){
-        ResultSet[] rs = null;
+        ResultSet[] rs = new ResultSet[4];
         String query = "select * from cliente";
         if(getConnection()){
             rs[0] = queryBD(query);

@@ -47,9 +47,14 @@ public class GesStock {
     
     private void boot(){
         ResultSet[] rs = bd.boot();
-        clientes = populateList(rs[0], 0);
-        produtos = populateList(rs[1], 1);
-        encomendas = populateList(rs[2], 2);
+        //try {
+            clientes = populateList(rs[0], 0 );
+            produtos = populateList(rs[1], 1);
+            encomendas = populateList(rs[2], 2);
+        //} catch (SQLException ex) {
+          //  Logger.getLogger(GesStock.class.getName()).log(Level.SEVERE, null, ex);
+        //}
+        
         
         
     }
@@ -66,6 +71,7 @@ public class GesStock {
                     case 2:  
                         encomendas.add(criaObjEncomenda(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getDate(4), rs.getInt(5))); break;
                 }
+                
             }
         } catch (SQLException ex) {
             Logger.getLogger(GesStock.class.getName()).log(Level.SEVERE, null, ex);
