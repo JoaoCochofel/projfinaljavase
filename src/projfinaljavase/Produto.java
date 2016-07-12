@@ -5,11 +5,13 @@
  */
 package projfinaljavase;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Vitor Filipe
  */
-public class Produto {
+public class Produto implements Serializable{
 
     private int id_Prod;
     private String desig;

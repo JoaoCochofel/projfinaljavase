@@ -5,11 +5,13 @@
  */
 package projfinaljavase;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Vitor Filipe
  */
-public class Cliente {
+public class Cliente implements Serializable{
 
     private int id_Cli;
     private String nome;

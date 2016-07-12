@@ -5,6 +5,7 @@
  */
 package projfinaljavase;
 
+import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
@@ -23,7 +24,7 @@ import java.util.logging.Logger;
  * TODO - corrigir as listagens de produtos que nao aparecem carregar base de
  * dados para memoria no arranque do programa!
  */
-public class GesStock {
+public class GesStock implements Serializable{
 
     private static List<Produto> produtos;
     private static List<Cliente> clientes;

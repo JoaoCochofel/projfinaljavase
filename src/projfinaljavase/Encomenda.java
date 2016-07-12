@@ -5,13 +5,14 @@
  */
 package projfinaljavase;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  *
  * @author Vitor Filipe
  */
-public class Encomenda {
+public class Encomenda implements Serializable{
 
     private int id_Enc;
     private Cliente cli;
