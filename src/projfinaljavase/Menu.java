@@ -20,6 +20,7 @@ public class Menu {
     public void menu() {
 
         gs = new GesStock();
+        
         do {
 
             System.out.println("\n");
@@ -121,20 +122,18 @@ public class Menu {
 
     private void Consulta() {
 
-        
-
         do {
-            
-            System.out.println("\n");
-        System.out.println("Menu\n");
-        System.out.println("1. Listar Stock de Produtos");
-        System.out.println("2. Listar Clientes");
-        System.out.println("3. Histórico Clientes");
-        System.out.println("4. Procurar Produtos ");
-        System.out.println("5. Guarda dados para ficheiro");
-        System.out.println("6. Menu Anterior");
 
-        escolha = Integer.parseInt(in.nextLine());
+            System.out.println("\n");
+            System.out.println("Menu\n");
+            System.out.println("1. Listar Stock de Produtos");
+            System.out.println("2. Listar Clientes");
+            System.out.println("3. Histórico Clientes");
+            System.out.println("4. Procurar Produtos ");
+            System.out.println("5. Guarda dados para ficheiro");
+            System.out.println("6. Menu Anterior");
+
+            escolha = Integer.parseInt(in.next());
 
             switch (escolha) {
 
@@ -182,18 +181,16 @@ public class Menu {
     //_______SUB-MENU PROCURA PRODUTO_______OPÇÃO 4 DO SUB-MENU CONSULTA______________//________________________________________
     public void ProcuraProdutos() {
 
-        
-
         do {
-            
+
             System.out.println("\n");
-        System.out.println("Menu\n");
-        System.out.println("1. Procura por Preco");
-        System.out.println("2. Procura por ID");
-        System.out.println("3. Procura por Designacao");
-        System.out.println("4. Procura por Stock a Zero");
-        System.out.println("5. Menu Anterior");
-         escolha = Integer.parseInt(in.nextLine());
+            System.out.println("Menu\n");
+            System.out.println("1. Procura por Preco");
+            System.out.println("2. Procura por ID");
+            System.out.println("3. Procura por Designacao");
+            System.out.println("4. Procura por Stock a Zero");
+            System.out.println("5. Menu Anterior");
+            escolha = Integer.parseInt(in.next());
 
             switch (escolha) {
 
@@ -231,10 +228,9 @@ public class Menu {
 
                     return;
 
-                }
+            }
         } while (true);
-         
-        
-        }
+
+    }
 
 }
