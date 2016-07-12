@@ -76,7 +76,7 @@ public class Encomenda {
 
     @Override
     public String toString() {
-        return "--------------------\nID:\t" + id_Enc + "\nCliente:\t" + cli.getNome() + "\nProduto:\t" + prod.getDesig() + "\nQuantidade\t" + qtd + "\nData:\t" + data.toString();
+        return "\n--------------------\nID:\t" + id_Enc + "\nCliente:\t" + cli.getNome() + "\nProduto:\t" + prod.getDesig() + "\nQuantidade\t" + qtd + "\nData:\t" + data.toString()+"\n";
     }
 
 }
