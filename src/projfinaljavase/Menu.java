@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 /**
  *
- * @author João
+ * @author Vitor Filipe
  */
 public class Menu {
 
@@ -31,7 +31,15 @@ public class Menu {
             System.out.println("4. Vendas de Produtos");
             System.out.println("5. Sair do Programa");
 
-            escolha = Integer.parseInt(in.nextLine());
+            boolean excep = false;
+            do{
+                try{
+                    escolha = Integer.parseInt(in.nextLine());
+                   excep =true;
+                }catch(NumberFormatException ex){
+                    System.out.println("Introduza um valor de 1 a 5.");
+                }
+            }while(!excep);
 
             switch (escolha) {
 
@@ -133,8 +141,16 @@ public class Menu {
             System.out.println("5. Guarda dados para ficheiro");
             System.out.println("6. Menu Anterior");
 
-            escolha = Integer.parseInt(in.next());
-
+      boolean excep = false;
+            do{
+                try{
+                    escolha = Integer.parseInt(in.nextLine());
+                   excep =true;
+                }catch(NumberFormatException ex){
+                    System.out.println("Introduza um valor de 1 a 6.");
+                }
+            }while(!excep);
+            
             switch (escolha) {
 
                 case 1:
@@ -190,15 +206,16 @@ public class Menu {
             System.out.println("3. Procura por Designacao");
             System.out.println("4. Procura por Stock a Zero");
             System.out.println("5. Menu Anterior");
-            boolean cenas = false;
+            
+            boolean excep = false;
             do{
                 try{
                     escolha = Integer.parseInt(in.nextLine());
-                    cenas =true;
+                   excep =true;
                 }catch(NumberFormatException ex){
-                    System.out.println("valor g");
+                    System.out.println("Introduza um valor de 1 a 5.");
                 }
-            }while(!cenas);
+            }while(!excep);
             
             switch (escolha) {
                 case 1:

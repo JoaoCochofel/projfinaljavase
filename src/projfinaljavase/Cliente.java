@@ -7,7 +7,7 @@ package projfinaljavase;
 
 /**
  *
- * @author João
+ * @author Vitor Filipe
  */
 public class Cliente {
 
