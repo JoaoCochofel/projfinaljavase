@@ -59,7 +59,9 @@ public class MenuGUI {
                     System.exit(0);
 
                     break;
-
+                default:
+                    JOptionPane.showMessageDialog(null, "Introduza um valor de 1 a 5.");
+                    break;
             }
 
         } while (true);
@@ -226,7 +228,9 @@ public class MenuGUI {
                 case 6:
 
                     return;
-
+                default:
+                    JOptionPane.showMessageDialog(null, "Introduza um valor de 1 a 6.");
+                    break;
             }
 
         } while (true);
@@ -339,6 +343,9 @@ public class MenuGUI {
                     if (!gs.eliminaProdPorId(id)) {
                         JOptionPane.showMessageDialog(null, "erro ao eliminar produto, por favor tente novamente");
                     }
+                default:
+                    JOptionPane.showMessageDialog(null, "Introduza um valor de 1 a 5.");
+                    break;
             }
         } while (true);
 

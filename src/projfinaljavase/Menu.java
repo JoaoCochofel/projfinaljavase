@@ -67,7 +67,9 @@ public class Menu {
                     System.exit(0);
 
                     break;
-
+                default:
+                    System.out.println("Introduza um valor de 1 a 5.");
+                    break;
             }
 
         } while (true);
@@ -260,7 +262,9 @@ public class Menu {
                 case 6:
 
                     return;
-
+                default:
+                    System.out.println("Introduza um valor de 1 a 6.");
+                    break;
             }
 
         } while (true);
@@ -310,7 +314,7 @@ public class Menu {
                     escolha = Integer.parseInt(in.nextLine());
                     excep = true;
                 } catch (NumberFormatException ex) {
-                    System.out.println("Introduza um valor de 1 a 5.");
+                    System.out.println("Introduza um valor de 1 a 6.");
                 }
             } while (!excep);
 
@@ -393,6 +397,9 @@ public class Menu {
                     if (!gs.eliminaProdPorId(id)) {
                         System.out.println("erro ao eliminar produto, por favor tente novamente");
                     }
+                default: 
+                    System.out.println("Introduza um valor de 1 a 6.");
+                    break;
             }
         } while (true);
 
