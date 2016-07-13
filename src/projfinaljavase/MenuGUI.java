@@ -6,13 +6,13 @@
 package projfinaljavase;
 
 import java.util.Scanner;
+import javax.swing.JOptionPane;
 
 /**
  *
- * @author Vitor Filipe
+ * @author João
  */
-public class Menu {
-
+public class MenuGUI {
     private int escolha;
     private GesStock gs;
     private Scanner in = new Scanner(System.in);
@@ -22,22 +22,14 @@ public class Menu {
         gs = new GesStock();
 
         do {
-
-            System.out.println("\n");
-            System.out.println("Menu\n");
-            System.out.println("1. Registo de Produto");
-            System.out.println("2. Registo de Cliente");
-            System.out.println("3. Consultas");
-            System.out.println("4. Vendas de Produtos");
-            System.out.println("5. Sair do Programa");
-
+            
             boolean excep = false;
             do {
                 try {
-                    escolha = Integer.parseInt(in.nextLine());
+                    escolha = Integer.parseInt(JOptionPane.showInputDialog("Menu\n1. Registo de Produto\n2. Registo de Cliente\n3. Consultas\n4. Vendas de Produtos\n5. Sair do Programa"));
                     excep = true;
                 } catch (NumberFormatException ex) {
-                    System.out.println("Introduza um valor de 1 a 5.");
+                    JOptionPane.showMessageDialog(null, "Introduza um valor de 1 a 5.");
                 }
             } while (!excep);
 
@@ -63,7 +55,7 @@ public class Menu {
 
                 case 5:
 
-                    System.out.println("Até à próxima");
+                    JOptionPane.showMessageDialog(null, "Até à próxima");
                     System.exit(0);
 
                     break;
@@ -78,53 +70,48 @@ public class Menu {
         int inc = -1, inp = -1, qtd = -1;
         float ret;
         boolean test = true;
-        System.out.println(gs.getIdNomeClientes());
-        System.out.println("Escolha o ID do cliente Comprador: ");
         do {
             try {
-                inc = Integer.parseInt(in.nextLine());
+                inc = Integer.parseInt(JOptionPane.showInputDialog(gs.getIdNomeClientes()+"\n"+"Escolha o ID do cliente Comprador: "));
                 if (gs.getIdNomeClientes().contains("" + inc)) {
                     test = true;
                 } else {
                     test = false;
-                    System.out.println("Introduza um valor inteiro válido");
+                    JOptionPane.showMessageDialog(null, "Introduza um valor inteiro válido");
                 }
             } catch (NumberFormatException ex) {
                 test = false;
-                System.out.println("Introduza um valor inteiro válido");
+                JOptionPane.showMessageDialog(null, "Introduza um valor inteiro válido");
             }
         } while (!test);
-        System.out.println(gs.getIdDesigProduto());
-        System.out.println("Escolha o ID do produto: ");
         do {
             try {
-                inp = Integer.parseInt(in.nextLine());
+                inp = Integer.parseInt(JOptionPane.showInputDialog(gs.getIdDesigProduto()+"\n"+"Escolha o ID do produto: "));
                 if (gs.getIdDesigProduto().contains("" + inp)) {
                     test = true;
                 } else {
                     test = false;
-                    System.out.println("Introduza um valor inteiro válido");
+                    JOptionPane.showMessageDialog(null, "Introduza um valor inteiro válido");
                 }
             } catch (NumberFormatException ex) {
                 test = false;
-                System.out.println("Introduza um valor inteiro válido");
+                JOptionPane.showMessageDialog(null, "Introduza um valor inteiro válido");
             }
         } while (!test);
-        System.out.println("Quantidade pretendida: ");
         do {
             try {
-                qtd = Integer.parseInt(in.nextLine());
+                qtd = Integer.parseInt(JOptionPane.showInputDialog("Quantidade pretendida: "));
                 test = true;
             } catch (NumberFormatException ex) {
                 test = false;
-                System.out.println("Introduza um valor inteiro válido");
+                JOptionPane.showMessageDialog(null, "Introduza um valor inteiro válido");
             }
         } while (!test);
         ret = gs.registaEncomenda(inc, inp, qtd);
         if (ret == -1) {
-            System.out.println("erro a registar encomenda, por favor tente novamente.");
+            JOptionPane.showMessageDialog(null, "erro a registar encomenda, por favor tente novamente.");
         } else {
-            System.out.println("Encomenda registada com sucesso");
+            JOptionPane.showConfirmDialog(null, "Encomenda registada com sucesso");
         }
     }
 
@@ -134,33 +121,28 @@ public class Menu {
         int stock = -1;
         float prc = -1;
 
-        System.out.println("Insira o nome de um Produto:");
-        desig = in.nextLine();
-        System.out.println("Insira o Stock do Produto:");
+        desig = JOptionPane.showInputDialog("Insira o nome de um Produto:");
         do {
             try {
-                stock = Integer.parseInt(in.nextLine());
+                stock = Integer.parseInt(JOptionPane.showInputDialog("Insira o Stock do Produto:"));
                 test = true;
             } catch (NumberFormatException ex) {
                 test = false;
-                System.out.println("Introduza um valor inteiro válido");
+                JOptionPane.showMessageDialog(null, "Introduza um valor inteiro válido");
             }
         } while (!test);
-        System.out.println("Insira o PVP:");
         do {
             try {
-                prc = Float.parseFloat(in.nextLine());
+                prc = Float.parseFloat(JOptionPane.showInputDialog("Insira o PVP:"));
             } catch (NumberFormatException ex) {
                 test = false;
-                System.out.println("Introduza um valor válido");
+                JOptionPane.showMessageDialog(null, "Introduza um valor válido");
             }
         } while (!test);
         if (gs.registaProducto(desig, stock, prc)) {
-            System.out.println("Produto registado com sucesso!!!");
+            JOptionPane.showMessageDialog(null, "Produto registado com sucesso!!!");
         } else {
-            System.out.println("As nossas desculpas!!");
-            System.out.println("Houve um erro ao resgitar o Produto");
-            System.out.println("Insira novamente!!!");
+            JOptionPane.showMessageDialog(null, "As nossas desculpas!!\nHouve um erro ao resgitar o Produto\nInsira novamente!!!");
         }
 
     }
@@ -172,16 +154,13 @@ public class Menu {
         int telf = -1;
         String mail;
 
-        System.out.println("Insira o nome do Cliente:");
-        nome = in.nextLine();
-        System.out.println("Insira uma Morada:");
-        morada = in.nextLine();
-        System.out.println("Insira um E-Mail:");
-        mail = in.nextLine();
-        System.out.println("Insira um contacto telefónico");
+        
+        nome = JOptionPane.showInputDialog("Insira o nome do Cliente:");
+        morada = JOptionPane.showInputDialog("Insira uma Morada:");
+        mail = JOptionPane.showInputDialog("Insira um E-Mail:");
         do {
             try {
-                telf = Integer.parseInt(in.nextLine());
+                telf = Integer.parseInt(JOptionPane.showInputDialog("Insira um contacto telefónico"));
                 if (gs.testNumTel(telf)) {
                     test = true;
                 } else {
@@ -190,15 +169,14 @@ public class Menu {
 
             } catch (NumberFormatException ex) {
                 test = false;
-                System.out.println("Introduza um Contacto telefónico válido (nacional)");
+                JOptionPane.showMessageDialog(null, "Introduza um Contacto telefónico válido (nacional)");
             }
         } while (!test);
         if (gs.registaCliente(nome, morada, telf, mail)) {
-            System.out.println("Cliente registado com sucesso!!!");
+            JOptionPane.showMessageDialog(null, "Cliente registado com sucesso!!!");
         } else {
-            System.out.println("As nossas desculpas!!");
-            System.out.println("Houve um erro ao resgitar o Cliente");
-            System.out.println("Insira novamente!!!");
+            
+            JOptionPane.showMessageDialog(null,"As nossas desculpas!!\nHouve um erro ao resgitar o Cliente\nInsira novamente!!!");
         }
 
     }
@@ -208,33 +186,24 @@ public class Menu {
 
         do {
 
-            System.out.println("\n");
-            System.out.println("Menu\n");
-            System.out.println("1. Listar Stock de Produtos");
-            System.out.println("2. Listar Clientes");
-            System.out.println("3. Histórico Clientes");
-            System.out.println("4. Procurar Produtos ");
-            System.out.println("5. Guarda dados para ficheiro");
-            System.out.println("6. Menu Anterior");
-
             boolean excep = false;
             do {
                 try {
-                    escolha = Integer.parseInt(in.nextLine());
+                    escolha = Integer.parseInt(JOptionPane.showInputDialog("Menu\n1. Listar Stock de Produtos\n2. Listar Clientes\n3. Histórico Clientes\n4. Procurar Produtos\n5. Guarda dados para ficheiro\n6. Menu Anterior"));
                     excep = true;
                 } catch (NumberFormatException ex) {
-                    System.out.println("Introduza um valor de 1 a 6.");
+                    JOptionPane.showMessageDialog(null, "Introduza um valor de 1 a 6.");
                 }
             } while (!excep);
 
             switch (escolha) {
 
                 case 1:
-                    System.out.println(gs.getProdutos());
+                    JOptionPane.showMessageDialog(null, gs.getProdutos());
 
                     break;
                 case 2:
-                    System.out.println(gs.getClientes());
+                    JOptionPane.showMessageDialog(null, gs.getClientes());
 
                     break;
                 case 3:
@@ -262,25 +231,24 @@ public class Menu {
 
     public void HistCliente() {
         boolean test = true;
-        System.out.println(gs.getIdNomeClientes());//primeiro lista os clientes para poder escolher
-        System.out.println("Insira o ID do Cliente que pretende:");
+        
+        
         int i = -1;
         do {
             try {
-                i = Integer.parseInt(in.nextLine());
+                i = Integer.parseInt(JOptionPane.showInputDialog(gs.getIdNomeClientes()+"\nInsira o ID do Cliente que pretende:"));
                 if (gs.getIdNomeClientes().contains("" + i)) {
                     test = true;
                 } else {
                     test = false;
-                    System.out.println("Introduza um valor inteiro válido");
+                    JOptionPane.showMessageDialog(null, "Introduza um valor inteiro válido");
                 }
             } catch (NumberFormatException ex) {
                 test = false;
-                System.out.println("Introduza um valor inteiro válido");
+                JOptionPane.showMessageDialog(null,"Introduza um valor inteiro válido" );
             }
         } while (!test);
-        System.out.println(gs.getEncomendasCliente(i));
-
+        JOptionPane.showMessageDialog(null, gs.getEncomendasCliente(i));
     }
 
     //_______SUB-MENU PROCURA PRODUTO_______OPÇÃO 4 DO SUB-MENU CONSULTA______________//________________________________________
@@ -288,77 +256,60 @@ public class Menu {
 
         do {
 
-            System.out.println("\n");
-            System.out.println("Menu\n");
-            System.out.println("1. Procura por Preco");
-            System.out.println("2. Procura por ID");
-            System.out.println("3. Procura por Designacao");
-            System.out.println("4. Procura por Stock a Zero");
-            System.out.println("5. Elimina produto por ID");
-            System.out.println("6. Menu Anterior");
-
             boolean excep = false;
             do {
                 try {
-                    escolha = Integer.parseInt(in.nextLine());
+                    escolha = Integer.parseInt(JOptionPane.showInputDialog("Menu\n1. Procura por Preco\n2. Procura por ID\n3. Procura por Designacao\n4. Procura por Stock a Zero\n5. Elimina produto por ID\n6. Menu Anterior"));
                     excep = true;
                 } catch (NumberFormatException ex) {
-                    System.out.println("Introduza um valor de 1 a 5.");
+                    JOptionPane.showMessageDialog(null, "Introduza um valor de 1 a 5.");
                 }
             } while (!excep);
 
             switch (escolha) {
                 case 1:
-
-                    System.out.println("Insira o preco que pretende:");
                     float i = -1;
                     excep = true;
                     do {
                         try {
-                            i = Float.parseFloat(in.nextLine());
+                            i = Float.parseFloat(JOptionPane.showInputDialog("Insira o preco que pretende:"));
                             excep = true;
                         } catch (NumberFormatException ex) {
                             excep = false;
-                            System.out.println("Introduza um valor inteiro válido");
+                            JOptionPane.showMessageDialog(null, "Introduza um valor inteiro válido");
                         }
                     } while (!excep);
 
-                    System.out.println(gs.getProdutoPreco(i));
+                    JOptionPane.showMessageDialog(null, gs.getProdutoPreco(i));
                     break;
 
                 case 2:
-                    System.out.println(gs.getIdDesigProduto());
-                    System.out.println("Insira o ID do produto:");
                     int q=-1;
                     do {
                         try {
-                            q = Integer.parseInt(in.nextLine());
+                            q = Integer.parseInt(JOptionPane.showInputDialog(gs.getIdDesigProduto()+"\nInsira o ID do produto:"));
                             if (gs.getIdDesigProduto().contains("" + q)) {
                                 excep = true;
                             } else {
                                 excep = false;
-                                System.out.println("Introduza um ID válido");
+                                JOptionPane.showMessageDialog(null, "Introduza um ID válido");
                             }
                         } catch (NumberFormatException ex) {
                             excep = false;
-                            System.out.println("Introduza um ID válido");
+                            JOptionPane.showMessageDialog(null, "Introduza um ID válido");
                         }
                     } while (!excep);
-                    System.out.println(gs.getProdutoID(q));
+                    JOptionPane.showMessageDialog(null, gs.getProdutoID(q));
                     break;
 
                 case 3:
-
-                    System.out.println("Insira o nome do produto");
                     String n;
-                    n = in.nextLine();
-                    System.out.println(gs.getProdutoNome(n));
+                    n = JOptionPane.showInputDialog("Insira o nome do produto");
+                    JOptionPane.showMessageDialog(null, gs.getProdutoNome(n));
                     break;
 
                 case 4:
-
-                    System.out.println(gs.getProdutosStockZero());
-
+                    JOptionPane.showMessageDialog(null, gs.getProdutosStockZero());
                     break;
 
                 case 6:
@@ -366,25 +317,23 @@ public class Menu {
                     return;
 
                 case 5:
-                    System.out.println(gs.getIdDesigProduto());
-                    System.out.println("Insira o ID do produto que deseja eliminar: ");
                     int id=-1;
                     do {
                         try {
-                            id = Integer.parseInt(in.nextLine());
+                            id = Integer.parseInt(JOptionPane.showInputDialog(gs.getIdDesigProduto()+"\nInsira o ID do produto que deseja eliminar: "));
                             if (gs.getIdDesigProduto().contains("" + id)) {
                                 excep = true;
                             } else {
                                 excep = false;
-                                System.out.println("Introduza um ID válido");
+                                JOptionPane.showMessageDialog(null, "Introduza um ID válido");
                             }
                         } catch (NumberFormatException ex) {
                             excep = false;
-                            System.out.println("Introduza um ID válido");
+                            JOptionPane.showMessageDialog(null, "Introduza um ID válido");
                         }
                     } while (!excep);
                     if (!gs.eliminaProdPorId(id)) {
-                        System.out.println("erro ao eliminar produto, por favor tente novamente");
+                        JOptionPane.showMessageDialog(null, "erro ao eliminar produto, por favor tente novamente");
                     }
             }
         } while (true);
