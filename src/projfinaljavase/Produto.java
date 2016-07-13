@@ -68,6 +68,7 @@ public class Produto implements Serializable{
         if (stock - a < 0) {
             ret = stock;
         } else {
+            stock-=a;
             ret = 0;
         }
         return ret;

@@ -205,7 +205,7 @@ public class InterfaceBD {
             ResultSet rs = queryBD(query);
             try{
                 if(!rs.next()){
-                    query = "insert into encomenda (id, id_cliente, id_produto, data, quantidade) values (" + e.getId_Enc()+","+ e.getCli().getId_Cli() +","+ e.getProd().getId_Prod()+","+e.getData()+","+e.getQtd()+")";
+                    query = "insert into encomenda (id, id_cliente, id_produto, data, quantidade) values ( " + e.getId_Enc()+" , "+ e.getCli().getId_Cli() +" , "+ e.getProd().getId_Prod()+" , date( "+e.getData().toString()+" ) , "+e.getQtd()+" )";
                     if(!insert(query)){
                         ret = false;
                     }

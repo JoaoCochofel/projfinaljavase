@@ -8,9 +8,11 @@ package projfinaljavase;
 import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Date;
 import java.text.DateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
@@ -375,6 +377,10 @@ public class GesStock implements Serializable{
         return ret;
     }
     
+    public String getStockID(int id){
+        return getProdutoID(id).substring(getProdutoID(id).indexOf("Stock:\t"), getProdutoID(id).indexOf("Stock:\t")+2);
+    }
+    
 
     /**
      * Este metodo recebe o Id do cliente que quer comprar, o id do produto e a
@@ -410,7 +416,8 @@ public class GesStock implements Serializable{
             }
         }
         try {
-            e = new Encomenda(c, p, new Date(), qtd);
+            java.sql.Date dt = java.sql.Date.valueOf(LocalDate.now());
+            e = new Encomenda(c, p, dt , qtd);
         } catch (NullPointerException ex) {
             ret = -1;
         }

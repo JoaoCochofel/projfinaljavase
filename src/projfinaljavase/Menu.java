@@ -58,7 +58,7 @@ public class Menu {
                     break;
 
                 case 4:
-
+                    vendeProduto();
                     break;
 
                 case 5:
@@ -122,8 +122,10 @@ public class Menu {
         } while (!test);
         ret = gs.registaEncomenda(inc, inp, qtd);
         if (ret == -1) {
+            System.out.println("o stock disponivel de momento para o item que deseja é: "+gs.getProdutoID(inp));
             System.out.println("erro a registar encomenda, por favor tente novamente.");
         } else {
+            System.out.println("Preço total da sua compra: "+ ret+"\n");
             System.out.println("Encomenda registada com sucesso");
         }
     }
