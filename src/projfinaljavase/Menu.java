@@ -180,6 +180,11 @@ public class Menu {
         morada = in.nextLine();
         System.out.println("Insira um E-Mail:");
         mail = in.nextLine();
+        while(!gs.testMailFormat(mail)){
+            System.out.println("Formato de email errado, por favor insira novamente: ");
+            mail = in.nextLine();
+        }
+        
         System.out.println("Insira um contacto telefónico");
         do {
             try {

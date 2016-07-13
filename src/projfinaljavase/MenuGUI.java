@@ -158,6 +158,10 @@ public class MenuGUI {
         nome = JOptionPane.showInputDialog("Insira o nome do Cliente:");
         morada = JOptionPane.showInputDialog("Insira uma Morada:");
         mail = JOptionPane.showInputDialog("Insira um E-Mail:");
+        while(!gs.testMailFormat(mail)){
+            JOptionPane.showMessageDialog(null, "Formato de email errado, por favor insira novamente: ");
+            mail = JOptionPane.showInputDialog("Insira um E-Mail:");
+        }
         do {
             try {
                 telf = Integer.parseInt(JOptionPane.showInputDialog("Insira um contacto telefónico"));

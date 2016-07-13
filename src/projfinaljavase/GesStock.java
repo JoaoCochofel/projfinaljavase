@@ -381,6 +381,14 @@ public class GesStock implements Serializable{
         return getProdutoID(id).substring(getProdutoID(id).indexOf("Stock:\t"), getProdutoID(id).indexOf("Stock:\t")+2);
     }
     
+    public boolean testMailFormat(String mail){
+        boolean ret = true;
+        if(!mail.matches("[a-z0-9]+@[a-z0-9]+(\\.[a-z]{2,3}){1,2}")){
+            ret = false;
+        }
+        return ret;
+    }
+    
 
     /**
      * Este metodo recebe o Id do cliente que quer comprar, o id do produto e a

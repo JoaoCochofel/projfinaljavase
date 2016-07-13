@@ -34,7 +34,7 @@ public class Main {
                     i = Integer.parseInt(in.nextLine());
                     test = true;
                 } catch (NumberFormatException ex) {
-                    System.out.println("ehh pa.. isto é cedo de mais para rebentar com o programa.. ponha lá um numerozinho entre um e dois... :)");
+                    System.out.println("ehh pa.. isto é cedo de mais para rebentar com o programa.. ponha lá um numerozinho entre um e dois... :\n(ou zero caso queira sair já))");
                     test = false;
                 }
             } while (!test);
